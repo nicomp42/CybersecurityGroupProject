@@ -72,6 +72,12 @@ namespace CyberSecurityGroupProject
                 Console.WriteLine(failCount + " tests FAILED");
             }
         }
+        /// <summary>
+        /// Run a test case, evaluate the result, and print the evaulation to the console
+        /// </summary>
+        /// <param name="testString">The string to be encrypted</param>
+        /// <param name="testTitle">The name of the test case</param>
+        /// <returns>True if the testString encrypted then decrypted and ended up equal to testString, false otherwise </returns>
         private static Boolean Test(String testString, String testTitle)
         {
             String text = testString;
