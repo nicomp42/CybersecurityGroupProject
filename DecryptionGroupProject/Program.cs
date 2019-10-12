@@ -48,13 +48,28 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Step 07: " + encryptedTextStep07);
             String decryptedTextStep07 = Step07.Decrypt(encryptedTextStep07);
             Console.WriteLine("         Decrypts to " + decryptedTextStep07);
-
-            Test01();
+            //Step 08
+            String encryptedTextStep08 = Step08.Encrypt(encryptedTextStep07);
+            Console.WriteLine("Step 08: " + encryptedTextStep08);
+            String decryptedTextStep08 = Step08.Decrypt(encryptedTextStep08);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep08);
+            // Test cases
+            int passCount = 0, failCount = 0;
+            if (Test("abc", "Test 01")) { passCount++; } else { failCount++; }
+            if (Test("I Love La Rosas Pizza", "Test 02")) { passCount++; } else { failCount++; }
+            if (Test("aaaaaaaaaaaaaaaaaaaaaa", "Test 03")) { passCount++; } else { failCount++; }
+            if (Test("X", "Test 04")) { passCount++; } else { failCount++; }
+            if (Test(" ", "Test 05")) { passCount++; } else { failCount++; }
+            if (failCount == 0) {
+                Console.WriteLine("ALL " + passCount + " tests passed");
+            } else {
+                Console.WriteLine(failCount + " tests FAILED");
+            }
         }
-        private static void Test01()
+        private static Boolean Test(String testString, String testTitle)
         {
-            String text = "I Love La Rosas Pizza";
-            Console.WriteLine("Test 01: Starting with " + text);
+            String text = testString;
+            Console.WriteLine(testTitle + ": Starting with " + text);
             String encryptedText;
             encryptedText = Step01.Encrypt(text);
             encryptedText = Step02.Encrypt(encryptedText, 'q', 2);
@@ -63,11 +78,13 @@ namespace CyberSecurityGroupProject
             encryptedText = Step05.Encrypt(encryptedText);
             encryptedText = Step06.Encrypt(encryptedText);
             encryptedText = Step07.Encrypt(encryptedText);
+            encryptedText = Step08.Encrypt(encryptedText);
 
             Console.WriteLine("Decrypting " + encryptedText);
 
             String decryptedText;
-            decryptedText = Step07.Decrypt(encryptedText);
+            decryptedText = Step08.Decrypt(encryptedText);
+            decryptedText = Step07.Decrypt(decryptedText);
             decryptedText = Step06.Decrypt(decryptedText);
             decryptedText = Step05.Decrypt(decryptedText);
             decryptedText = Step04.Decrypt(decryptedText);
@@ -76,6 +93,13 @@ namespace CyberSecurityGroupProject
             decryptedText = Step01.Decrypt(decryptedText);
 
             Console.WriteLine("Result = " + decryptedText);
+            if (text.Equals(decryptedText)) {
+                Console.WriteLine(testTitle + " Passed");
+                return true;
+            } else {
+                Console.WriteLine(testTitle + " FAILED");
+                return false;
+            }
         }
     }
 }

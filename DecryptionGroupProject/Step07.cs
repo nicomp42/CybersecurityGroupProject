@@ -12,17 +12,17 @@ namespace CyberSecurityGroupProject
             /// Encrypt the String
             /// </summary>
             /// <param name="text">String to be encrypted. From the left, add 1, then 2, then 3 to each character up to 100 inclusive,
-            /// then start from 1 again</param>
+            /// then start from 1 again. For example: abc becomes bdf</param>
             /// <returns>Encrypted String</returns>
             public static String Encrypt(String text)
             {
                 String encryptedText = "";
-            int increment = 1;
-            for (int i = 0; i < text.Length; i++) {
+                int increment = 1;
+                for (int i = 0; i < text.Length; i++) {
                     encryptedText += (Char)(((int)text.ToCharArray()[i]) + increment);
                     increment++;
                     if (increment == 101) { increment = 1; }
-            }
+                }
             return encryptedText;
             }
         /// <summary>
