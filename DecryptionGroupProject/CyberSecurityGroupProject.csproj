@@ -50,6 +50,7 @@
     <Compile Include="Step03.cs" />
     <Compile Include="Step04.cs" />
     <Compile Include="Step05.cs" />
+    <Compile Include="Step06.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
