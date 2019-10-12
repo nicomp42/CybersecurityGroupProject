@@ -43,12 +43,17 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Step 06: " + encryptedTextStep06);
             String decryptedTextStep06 = Step06.Decrypt(encryptedTextStep06);
             Console.WriteLine("         Decrypts to " + decryptedTextStep06);
+            //Step 07
+            String encryptedTextStep07 = Step07.Encrypt(encryptedTextStep06);
+            Console.WriteLine("Step 07: " + encryptedTextStep07);
+            String decryptedTextStep07 = Step07.Decrypt(encryptedTextStep07);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep07);
 
             Test01();
         }
         private static void Test01()
         {
-            String text = "abc";            // "I Love La Rosas Pizza";
+            String text = "I Love La Rosas Pizza";
             Console.WriteLine("Test 01: Starting with " + text);
             String encryptedText;
             encryptedText = Step01.Encrypt(text);
@@ -57,11 +62,13 @@ namespace CyberSecurityGroupProject
             encryptedText = Step04.Encrypt(encryptedText);
             encryptedText = Step05.Encrypt(encryptedText);
             encryptedText = Step06.Encrypt(encryptedText);
+            encryptedText = Step07.Encrypt(encryptedText);
 
             Console.WriteLine("Decrypting " + encryptedText);
 
             String decryptedText;
-            decryptedText = Step06.Decrypt(encryptedText);
+            decryptedText = Step07.Decrypt(encryptedText);
+            decryptedText = Step06.Decrypt(decryptedText);
             decryptedText = Step05.Decrypt(decryptedText);
             decryptedText = Step04.Decrypt(decryptedText);
             decryptedText = Step03.Decrypt(decryptedText);
