@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8293E273-D340-47FE-AF84-B7513C9BC937}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DecryptionGroupProject</RootNamespace>
-    <AssemblyName>DecryptionGroupProject</AssemblyName>
+    <RootNamespace>CyberSecurityGroupProject</RootNamespace>
+    <AssemblyName>CyberSecurityGroupProject</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -53,6 +53,7 @@
     <Compile Include="Step06.cs" />
     <Compile Include="Step07.cs" />
     <Compile Include="Step08.cs" />
+    <Compile Include="Step09.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

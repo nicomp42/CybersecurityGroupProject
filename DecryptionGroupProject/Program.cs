@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CyberSecurityGroupProject
 {
@@ -53,6 +50,11 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Step 08: " + encryptedTextStep08);
             String decryptedTextStep08 = Step08.Decrypt(encryptedTextStep08);
             Console.WriteLine("         Decrypts to " + decryptedTextStep08);
+            //Step 09
+            String encryptedTextStep09 = Step09.Encrypt(encryptedTextStep08);
+            Console.WriteLine("Step 09: " + encryptedTextStep09);
+            String decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep09);
             // Test cases
             int passCount = 0, failCount = 0;
             if (Test("abc", "Test 01")) { passCount++; } else { failCount++; }
@@ -79,11 +81,13 @@ namespace CyberSecurityGroupProject
             encryptedText = Step06.Encrypt(encryptedText);
             encryptedText = Step07.Encrypt(encryptedText);
             encryptedText = Step08.Encrypt(encryptedText);
+            encryptedText = Step09.Encrypt(encryptedText);
 
             Console.WriteLine("Decrypting " + encryptedText);
 
             String decryptedText;
-            decryptedText = Step08.Decrypt(encryptedText);
+            decryptedText = Step09.Decrypt(encryptedText);
+            decryptedText = Step08.Decrypt(decryptedText);
             decryptedText = Step07.Decrypt(decryptedText);
             decryptedText = Step06.Decrypt(decryptedText);
             decryptedText = Step05.Decrypt(decryptedText);
