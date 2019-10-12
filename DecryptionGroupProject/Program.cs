@@ -62,6 +62,10 @@ namespace CyberSecurityGroupProject
             if (Test("aaaaaaaaaaaaaaaaaaaaaa", "Test 03")) { passCount++; } else { failCount++; }
             if (Test("X", "Test 04")) { passCount++; } else { failCount++; }
             if (Test(" ", "Test 05")) { passCount++; } else { failCount++; }
+            if (Test("          ", "Test 06")) { passCount++; } else { failCount++; }
+            if (Test("12345", "Test 07")) { passCount++; } else { failCount++; }
+            if (Test("!@#$%^&*()_+{}\":>?<", "Test 08")) { passCount++; } else { failCount++; }
+            if (Test("~~~~~~~~~~~~~~~~~~~~          ", "Test 09")) { passCount++; } else { failCount++; }
             if (failCount == 0) {
                 Console.WriteLine("ALL " + passCount + " tests passed");
             } else {
