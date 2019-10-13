@@ -1,5 +1,8 @@
-﻿using System;
-
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */
+using System;
 
 namespace CyberSecurityGroupProject
 {
@@ -55,6 +58,14 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Step 09: " + encryptedTextStep09);
             String decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
             Console.WriteLine("         Decrypts to " + decryptedTextStep09);
+            //Step 10
+            int[] mapping = BuildRandomMapping();
+            String encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
+            Console.WriteLine("Step 10: " + encryptedTextStep10);
+            String decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep10);
+
+
             // Test cases
             int passCount = 0, failCount = 0;
             if (Test("abc", "Test 01")) { passCount++; } else { failCount++; }
@@ -66,6 +77,11 @@ namespace CyberSecurityGroupProject
             if (Test("12345", "Test 07")) { passCount++; } else { failCount++; }
             if (Test("!@#$%^&*()_+{}\":>?<", "Test 08")) { passCount++; } else { failCount++; }
             if (Test("~~~~~~~~~~~~~~~~~~~~          ", "Test 09")) { passCount++; } else { failCount++; }
+            // Build a string wth all 127 ASCII characters (some are unprintable) and test that string
+            String test10 = "";
+            for (int i = 0; i < 127; i++) { test10 += (char)i; }
+            if (Test(test10, "Test 10")) { passCount++; } else { failCount++; }
+
             if (failCount == 0) {
                 Console.WriteLine("ALL " + passCount + " tests passed");
             } else {
@@ -92,11 +108,14 @@ namespace CyberSecurityGroupProject
             encryptedText = Step07.Encrypt(encryptedText);
             encryptedText = Step08.Encrypt(encryptedText);
             encryptedText = Step09.Encrypt(encryptedText);
+            int[] mapping = BuildRandomMapping();
+            encryptedText = Step10.Encrypt(encryptedText, mapping);
 
             Console.WriteLine("Decrypting " + encryptedText);
 
             String decryptedText;
-            decryptedText = Step09.Decrypt(encryptedText);
+            decryptedText = Step10.Decrypt(encryptedText, mapping);
+            decryptedText = Step09.Decrypt(decryptedText);
             decryptedText = Step08.Decrypt(decryptedText);
             decryptedText = Step07.Decrypt(decryptedText);
             decryptedText = Step06.Decrypt(decryptedText);
@@ -114,6 +133,30 @@ namespace CyberSecurityGroupProject
                 Console.WriteLine(testTitle + " FAILED");
                 return false;
             }
+        }
+        /// <summary>
+        /// Build a random map for all 255 characters.
+        /// For example: mapping[0] is the value that should be mapped for character at location 0 in the ASCII chart
+        /// For example: mapping[48] is the value that should be mapped for character at location 48 in the ASCII chart
+        /// This a brute-force algorithm that may take a few milliseconds. 
+        /// </summary>
+        /// <param name="mapping">The random map</param>
+        public static int[] BuildRandomMapping() {
+            int[] mapping = new int[255];
+            Random r = new Random(42);
+            for (int i = 0; i < mapping.Length; i++) {
+                int tmpMap;
+                while (true) {
+                    Boolean found;
+                    found = false;
+                    tmpMap = r.Next(256);
+                    for (int j = 0; j < mapping.Length; j++) {  // Find a mapping we have not used yet.
+                        if (mapping[j] == tmpMap) { found = true; /*Console.Write(i + " ");*/ break; }
+                    }
+                    if (!found) { mapping[i] = tmpMap; break; }
+                }
+            }
+            return mapping;
         }
     }
 }

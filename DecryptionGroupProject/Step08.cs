@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */
+using System;
 
 
 namespace CyberSecurityGroupProject
@@ -10,20 +14,19 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be encrypted. Compute the checksum mod 25 of the text. 
         /// Append that number as ASCII text, 2 chars wide, xero padded from the left, at the beginning of the text.
-        /// Then, for all the other characters, add the number to it. </param>
+        /// Then, append that number of random characters to the end of text </param>
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
         {
-            String encryptedText = "";
+            String encryptedText = text;
             int checksum = 0;
             foreach (char c in text) {
                 checksum += System.Convert.ToInt32(c);
             }
             checksum %= 25;    // Now checksum will be from 0 to 24, inclusive
-            foreach (char c in text) {
-                int num;
-                num = System.Convert.ToInt32(c);
-                encryptedText += System.Convert.ToChar(num + checksum);
+            Random r = new Random();
+            for (int i = 0; i < checksum; i++) {
+                encryptedText += System.Convert.ToChar(r.Next(100) + 30);
             }
             encryptedText = System.Convert.ToString(checksum) + encryptedText;
             if (checksum < 10) { encryptedText = "0" + encryptedText; } // Add the zero padding if necessary
@@ -35,15 +38,10 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be decrypted.</param>
         /// <returns>Decrypted String</returns>
-        public static String Decrypt(String text)
-        {
-            String decryptedText = "";
-            int checksum = System.Convert.ToInt32(text.Substring(0, 2));    // Extract the checksum and convert to int
-            foreach (char c in text.Substring(2)) {
-                int num;
-                num = System.Convert.ToInt32(c);
-                decryptedText += System.Convert.ToChar(num - checksum);
-            }
+        public static String Decrypt(String text) {
+            String decryptedText = text.Substring(2);
+            int checkSum = System.Convert.ToInt32(text.Substring(0, 2));    // Extract the checksum and convert to int
+            decryptedText = decryptedText.Substring(0, decryptedText.Length - checkSum);    // Lop off the random characters
             return decryptedText;
         }
     }

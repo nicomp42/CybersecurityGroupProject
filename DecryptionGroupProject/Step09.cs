@@ -1,5 +1,8 @@
-﻿using System;
-
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */
+using System;
 
 namespace CyberSecurityGroupProject
 {

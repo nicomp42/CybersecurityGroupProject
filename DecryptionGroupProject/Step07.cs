@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */
+ using System;
 
 
 namespace CyberSecurityGroupProject
@@ -16,7 +20,7 @@ namespace CyberSecurityGroupProject
                 String encryptedText = "";
                 int increment = 1;
                 for (int i = 0; i < text.Length; i++) {
-                    encryptedText += (Char)(((int)text.ToCharArray()[i]) + increment);
+                    encryptedText += (char)(((int)text.ToCharArray()[i]) + increment);
                     increment++;
                     if (increment == 101) { increment = 1; }
                 }

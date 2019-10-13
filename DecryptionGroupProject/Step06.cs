@@ -1,5 +1,8 @@
-﻿using System;
-
+﻿/*
+ * Bill Nicholson
+ * nicholdw@ucmail.uc.edu
+ */
+using System;
 
 namespace CyberSecurityGroupProject
 {
@@ -8,7 +11,8 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Encrypt the String
         /// </summary>
-        /// <param name="text">String to be encrypted. Swap every other character</param>
+        /// <param name="text">String to be encrypted. Swap every other character. For example abcd = badc.
+        /// If the number of chars in text is odd, do not change the last character</param>
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
         {
@@ -27,7 +31,7 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Decrypt the String
         /// </summary>
-        /// <param name="text">String to be decrypted. Swap every other character</param>
+        /// <param name="text">String to be decrypted. Swap every other character to reverse the Encrypt method above</param>
         /// <returns>Decrypted String</returns>
         public static String Decrypt(String text)
         {
