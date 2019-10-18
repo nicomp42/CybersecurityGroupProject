@@ -9,7 +9,8 @@ namespace CyberSecurityGroupProject
     class Step10
     {
         /// <summary>
-        /// Map every character to a different character using a mapping array
+        /// Map every character to a different character using a mapping array.
+        /// For example text = "acb" mapping = 'n', 'p', 'k' then the encrypted string = "nkp"
         /// </summary>
         /// <param name="text">The text to be mapped</param>
         /// <param name="mapping">The mapping array</param>
@@ -23,6 +24,12 @@ namespace CyberSecurityGroupProject
             }
             return encryptedText;
         }
+        /// <summary>
+        /// Reverse the encryption applied in the Encrypt method in this class.
+        /// </summary>
+        /// <param name="text">The text to be decrypted</param>
+        /// <param name="mapping">The mapping array</param>
+        /// <returns>The decrypted string</returns>
         public static String Decrypt(String text, int[] mapping)
         {
             String decryptedText = "";
