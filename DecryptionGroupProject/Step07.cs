@@ -11,9 +11,11 @@ namespace CyberSecurityGroupProject
     {
             /// <summary>
             /// Encrypt the String
+            /// From the left, add 1, then 2, then 3 to each character up to 100 inclusive,
+            /// then start from 1 again. 
+            /// For example: "abcd" becomes "bdfh".
             /// </summary>
-            /// <param name="text">String to be encrypted. From the left, add 1, then 2, then 3 to each character up to 100 inclusive,
-            /// then start from 1 again. For example: abc becomes bdf. Characters in text must be from 1 to 127, inclusive. </param>
+            /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive. </param>
             /// <returns>Encrypted String</returns>
             public static String Encrypt(String text)
             {

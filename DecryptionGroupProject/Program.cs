@@ -1,4 +1,5 @@
 ﻿/*
+ * Text logic for Cyber Security Group Project
  * Bill Nicholson
  * nicholdw@ucmail.uc.edu
  */
@@ -10,6 +11,7 @@ namespace CyberSecurityGroupProject
     {
         static void Main(string[] args)
         {
+
             String clearText = "abcde";
             Console.WriteLine("Starting with "+ clearText);
             Console.WriteLine("Encrypting...");
@@ -87,6 +89,7 @@ namespace CyberSecurityGroupProject
             } else {
                 Console.WriteLine(failCount + " tests FAILED");
             }
+            Console.ReadLine();
         }
         /// <summary>
         /// Run a test case, evaluate the result, and print the evaulation to the console

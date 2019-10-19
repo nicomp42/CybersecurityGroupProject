@@ -11,10 +11,12 @@ namespace CyberSecurityGroupProject
     {
         /// <summary>
         /// Encrypt the String
+        /// Compute the checksum mod 25 of the text. 
+        /// Append that number as ASCII text, 2 chars wide, zero padded from the left, at the beginning of the text.
+        /// Then, append that number of random characters to the end of the text.
+        /// For example: "abcd" encrypts to  "20abcde26/EI;6 ?@]]5?Wh{h4"
         /// </summary>
-        /// <param name="text">String to be encrypted. Compute the checksum mod 25 of the text. 
-        /// Append that number as ASCII text, 2 chars wide, xero padded from the left, at the beginning of the text.
-        /// Then, append that number of random characters to the end of text. Characters in text must be from 1 to 127, inclusive.  </param>
+        /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive.  </param>
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
         {

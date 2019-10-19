@@ -10,9 +10,11 @@ namespace CyberSecurityGroupProject
     {
         /// <summary>
         /// Encrypt the String
-        /// </summary>
-        /// <param name="text">String to be encrypted. Swap every other character. For example abcd = badc. Characters in text must be from 1 to 127, inclusive. 
+        /// Swap every other character. 
         /// If the number of chars in text is odd, do not change the last character</param>
+        /// For example "abcd" = "badc".
+        /// </summary>
+        /// <param name="text">String to be encrypted.  Characters in text must be from 1 to 127, inclusive. 
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
         {

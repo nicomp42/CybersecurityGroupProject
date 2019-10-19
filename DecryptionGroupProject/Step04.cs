@@ -11,8 +11,10 @@ namespace CyberSecurityGroupProject
     {
         /// <summary>
         /// Encrypt the String
+        /// XOR the low bit of each char in text with 1.
+        /// For example: "abcde" becomes  "`cbed"
         /// </summary>
-        /// <param name="text">String to be encrypted. XOR the low bit of each char in text with 1. Characters in text must be from 1 to 127, inclusive. </param>
+        /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive. </param>
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
         {

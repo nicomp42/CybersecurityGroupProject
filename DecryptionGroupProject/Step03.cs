@@ -11,6 +11,8 @@ namespace CyberSecurityGroupProject
     {
         /// <summary>
         /// Encrypt the String
+        /// Reverse the order of the text
+        /// For example: "abcd" becomes "dcba"
         /// </summary>
         /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive. </param>
         /// <returns>Encrypted String</returns>

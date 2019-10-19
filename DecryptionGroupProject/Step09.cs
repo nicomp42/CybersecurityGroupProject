@@ -10,6 +10,7 @@ namespace CyberSecurityGroupProject
     {
         /// <summary>
         /// Encrypt the String. Swap the first and last bytes. If the string is length 1, do nothing.
+        /// For example, "abcd" becomes "dbca"
         /// </summary>
         /// <param name="text">String to be encrypted.  Characters in text must be from 1 to 127, inclusive. </param>
         /// <returns>Encrypted String</returns>
