@@ -10,9 +10,9 @@ namespace CyberSecurityGroupProject
     {
         /// <summary>
         /// Map every character to a different character using a mapping array.
-        /// For example text = "acb" mapping = 'n', 'p', 'k' then the encrypted string = "nkp"
+        /// For example text = "acb" mapping array = 'n', 'p', 'k' then the encrypted string = "nkp"
         /// </summary>
-        /// <param name="text">The text to be mapped</param>
+        /// <param name="text">The text to be mapped. Characters in text must be from 1 to 127, inclusive. </param>
         /// <param name="mapping">The mapping array</param>
         /// <returns>The encoded string</returns>
         public static String Encrypt(String text, int[] mapping)

@@ -12,7 +12,7 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Encrypt the String
         /// </summary>
-        /// <param name="text">String to be encrypted</param>
+        /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive. </param>
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
         {
@@ -21,7 +21,7 @@ namespace CyberSecurityGroupProject
             return new string(charArray);
         }
         /// <summary>
-        /// Decrypt the String
+        /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
         /// <param name="text">String to be decrypted</param>
         /// <returns>Decrypted String</returns>

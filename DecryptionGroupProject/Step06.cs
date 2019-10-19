@@ -11,7 +11,7 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Encrypt the String
         /// </summary>
-        /// <param name="text">String to be encrypted. Swap every other character. For example abcd = badc.
+        /// <param name="text">String to be encrypted. Swap every other character. For example abcd = badc. Characters in text must be from 1 to 127, inclusive. 
         /// If the number of chars in text is odd, do not change the last character</param>
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
@@ -29,7 +29,7 @@ namespace CyberSecurityGroupProject
             return encryptedText;
         }
         /// <summary>
-        /// Decrypt the String
+        /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
         /// <param name="text">String to be decrypted. Swap every other character to reverse the Encrypt method above</param>
         /// <returns>Decrypted String</returns>

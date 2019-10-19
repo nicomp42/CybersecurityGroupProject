@@ -9,9 +9,9 @@ namespace CyberSecurityGroupProject
     class Step09
     {
         /// <summary>
-        /// Encrypt the String
+        /// Encrypt the String. Swap the first and last bytes. If the string is length 1, do nothing.
         /// </summary>
-        /// <param name="text">String to be encrypted. Swap the first and last bytes. If the string is length 1, do nothing
+        /// <param name="text">String to be encrypted.  Characters in text must be from 1 to 127, inclusive. </param>
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
         {
@@ -25,7 +25,7 @@ namespace CyberSecurityGroupProject
             return encryptedText;
         }
         /// <summary>
-        /// Decrypt the String
+        /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
         /// <param name="text">String to be decrypted. Swap the first and last bytes. If the string is length 1, do nothing</param>
         /// <returns>Decrypted String</returns>

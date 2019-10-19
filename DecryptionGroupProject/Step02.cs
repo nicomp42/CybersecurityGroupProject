@@ -13,7 +13,7 @@ namespace CyberSecurityGroupProject
         /// Add padding to both sides of each character in the string
         /// For example: "abc",'q', 2 becomes qqaqqqqbqqqqcqq
         /// </summary>
-        /// <param name="text">The string to be encrypted</param>
+        /// <param name="text">The string to be encrypted. Characters in text must be from 1 to 127, inclusive. </param>
         /// <param name="padding">The single char to use as the padding</param>
         /// <param name="count">The number of padding characters on either side of the string</param>
         /// <returns>The encrypted string</returns>
@@ -27,6 +27,7 @@ namespace CyberSecurityGroupProject
             return encryptedText;
         }
         /// <summary>
+        /// Reverse the encryption applied in the Encrypt method in this class.
         /// Remove padding from both sides of each character in the string
         /// For example: "qqaqqqqbqqqqcqq", 2 becomes abc
         /// </summary>

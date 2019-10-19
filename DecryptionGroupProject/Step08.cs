@@ -14,7 +14,7 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be encrypted. Compute the checksum mod 25 of the text. 
         /// Append that number as ASCII text, 2 chars wide, xero padded from the left, at the beginning of the text.
-        /// Then, append that number of random characters to the end of text </param>
+        /// Then, append that number of random characters to the end of text. Characters in text must be from 1 to 127, inclusive.  </param>
         /// <returns>Encrypted String</returns>
         public static String Encrypt(String text)
         {
@@ -34,7 +34,7 @@ namespace CyberSecurityGroupProject
             return encryptedText;
         }
         /// <summary>
-        /// Decrypt the String
+        /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
         /// <param name="text">String to be decrypted.</param>
         /// <returns>Decrypted String</returns>
