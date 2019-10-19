@@ -4,7 +4,6 @@
  */
  using System;
 
-
 namespace CyberSecurityGroupProject
 {
     class Step07

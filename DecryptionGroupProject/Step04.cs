@@ -4,14 +4,13 @@
  */
 using System;
 
-
 namespace CyberSecurityGroupProject
 {
     class Step04
     {
         /// <summary>
         /// Encrypt the String
-        /// XOR the low bit of each char in text with 1.
+        /// XOR the low bit of each char in text with 1. This flips the state of the bit: 1 becomes 0, 0 becomes 1
         /// For example: "abcde" becomes  "`cbed"
         /// </summary>
         /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive. </param>
@@ -19,8 +18,7 @@ namespace CyberSecurityGroupProject
         public static String Encrypt(String text)
         {
             String encryptedText = "";
-            foreach (char c in text)
-            {
+            foreach (char c in text) {
                 encryptedText += (Char)(((int)c ^ 1));
             }
             return encryptedText;
@@ -33,8 +31,7 @@ namespace CyberSecurityGroupProject
         public static String Decrypt(String text)
         {
             String decryptedText = "";
-            foreach (char c in text)
-            {
+            foreach (char c in text) {
                 decryptedText += (Char)(((int)c ^ 1));
             }
             return decryptedText;

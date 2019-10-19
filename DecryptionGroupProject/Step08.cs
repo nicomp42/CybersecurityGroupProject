@@ -4,7 +4,6 @@
  */
 using System;
 
-
 namespace CyberSecurityGroupProject
 {
     class Step08
@@ -14,7 +13,7 @@ namespace CyberSecurityGroupProject
         /// Compute the checksum mod 25 of the text. 
         /// Append that number as ASCII text, 2 chars wide, zero padded from the left, at the beginning of the text.
         /// Then, append that number of random characters to the end of the text.
-        /// For example: "abcd" encrypts to  "20abcde26/EI;6 ?@]]5?Wh{h4"
+        /// For example: "abcd" encrypts to  "19abcdRjRs'mzy?_MmZx93-a"
         /// </summary>
         /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive.  </param>
         /// <returns>Encrypted String</returns>
