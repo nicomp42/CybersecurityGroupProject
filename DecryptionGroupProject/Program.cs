@@ -1,5 +1,6 @@
 ﻿/*
  * Text logic for Cyber Security Group Project
+ * All the encryption steps are symmetric
  * Bill Nicholson
  * nicholdw@ucmail.uc.edu
  */
@@ -11,85 +12,36 @@ namespace CyberSecurityGroupProject
     {
         static void Main(string[] args)
         {
-
-            String clearText = "abcde";
-            Console.WriteLine("Starting with "+ clearText);
-            Console.WriteLine("Encrypting...");
-            // Step 01
-            String encryptedTextStep01 = Step01.Encrypt(clearText);
-            Console.WriteLine("Step 01: " + encryptedTextStep01);
-            String decryptedTextStep01 = Step01.Decrypt(encryptedTextStep01);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep01);
-            // Step 02
-            String encryptedTextStep02 = Step02.Encrypt(encryptedTextStep01, 'q', 2);
-            Console.WriteLine("Step 02: " + encryptedTextStep02);
-            String decryptedTextStep02 = Step02.Decrypt(encryptedTextStep02, 2);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep02);
-            //Step 03
-            String encryptedTextStep03 = Step03.Encrypt(encryptedTextStep02);
-            Console.WriteLine("Step 03: " + encryptedTextStep03);
-            String decryptedTextStep03 = Step03.Decrypt(encryptedTextStep03);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep03);
-            //Step 04
-            String encryptedTextStep04 = Step04.Encrypt(encryptedTextStep03);
-            Console.WriteLine("Step 04: " + encryptedTextStep04);
-            String decryptedTextStep04 = Step04.Decrypt(encryptedTextStep04);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep04);
-            //Step 05
-            String encryptedTextStep05 = Step05.Encrypt(encryptedTextStep04);
-            Console.WriteLine("Step 05: " + encryptedTextStep05);
-            String decryptedTextStep05 = Step05.Decrypt(encryptedTextStep05);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep05);
-            //Step 06
-            String encryptedTextStep06 = Step06.Encrypt(encryptedTextStep05);
-            Console.WriteLine("Step 06: " + encryptedTextStep06);
-            String decryptedTextStep06 = Step06.Decrypt(encryptedTextStep06);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep06);
-            //Step 07
-            String encryptedTextStep07 = Step07.Encrypt(encryptedTextStep06);
-            Console.WriteLine("Step 07: " + encryptedTextStep07);
-            String decryptedTextStep07 = Step07.Decrypt(encryptedTextStep07);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep07);
-            //Step 08
-            String encryptedTextStep08 = Step08.Encrypt(encryptedTextStep07);
-            Console.WriteLine("Step 08: " + encryptedTextStep08);
-            String decryptedTextStep08 = Step08.Decrypt(encryptedTextStep08);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep08);
-            //Step 09
-            String encryptedTextStep09 = Step09.Encrypt(encryptedTextStep08);
-            Console.WriteLine("Step 09: " + encryptedTextStep09);
-            String decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep09);
-            //Step 10
-            int[] mapping = BuildRandomMapping();
-            String encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
-            Console.WriteLine("Step 10: " + encryptedTextStep10);
-            String decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep10);
-
-
+            PerformStepByStepTest();
+            PerformTestCases();
+            Console.ReadLine();
+        }
+        /// <summary>
+        /// Run a suite of test cases, evaluate the results, and print the evaulation to the console
+        /// </summary>
+        private static void PerformTestCases() {
             // Test cases
             int passCount = 0, failCount = 0;
-            if (Test("abc", "Test 01")) { passCount++; } else { failCount++; }
-            if (Test("I Love La Rosas Pizza", "Test 02")) { passCount++; } else { failCount++; }
-            if (Test("aaaaaaaaaaaaaaaaaaaaaa", "Test 03")) { passCount++; } else { failCount++; }
-            if (Test("X", "Test 04")) { passCount++; } else { failCount++; }
-            if (Test(" ", "Test 05")) { passCount++; } else { failCount++; }
-            if (Test("          ", "Test 06")) { passCount++; } else { failCount++; }
-            if (Test("12345", "Test 07")) { passCount++; } else { failCount++; }
-            if (Test("!@#$%^&*()_+{}\":>?<", "Test 08")) { passCount++; } else { failCount++; }
+            if (Test("abc",                            "Test 01")) { passCount++; } else { failCount++; }
+            if (Test("I Love La Rosas Pizza",          "Test 02")) { passCount++; } else { failCount++; }
+            if (Test("aaaaaaaaaaaaaaaaaaaaaa",         "Test 03")) { passCount++; } else { failCount++; }
+            if (Test("X",                              "Test 04")) { passCount++; } else { failCount++; }
+            if (Test(" ",                              "Test 05")) { passCount++; } else { failCount++; }
+            if (Test("          ",                     "Test 06")) { passCount++; } else { failCount++; }
+            if (Test("12345",                          "Test 07")) { passCount++; } else { failCount++; }
+            if (Test("!@#$%^&*()_+{}\":>?<",           "Test 08")) { passCount++; } else { failCount++; }
             if (Test("~~~~~~~~~~~~~~~~~~~~          ", "Test 09")) { passCount++; } else { failCount++; }
-            // Build a string wth all 127 ASCII characters (some are unprintable) and test that string
+            // Test 10: build a string wth all 127 ASCII characters (some are unprintable) and test that string
             String test10 = "";
             for (int i = 0; i < 127; i++) { test10 += (char)i; }
-            if (Test(test10, "Test 10")) { passCount++; } else { failCount++; }
+            if (Test(test10,                            "Test 10")) { passCount++; } else { failCount++; }
 
+            // How did we do? Did all the test pass?
             if (failCount == 0) {
                 Console.WriteLine("ALL " + passCount + " tests passed");
             } else {
                 Console.WriteLine(failCount + " tests FAILED");
             }
-            Console.ReadLine();
         }
         /// <summary>
         /// Run a test case, evaluate the result, and print the evaulation to the console
@@ -160,6 +112,64 @@ namespace CyberSecurityGroupProject
                 }
             }
             return mapping;
+        }
+        /// <summary> Run a single test case and print every intermediate step for debugging.
+        /// The results of each step are printed but not evaluated. </summary>
+        private static void PerformStepByStepTest() {
+            String clearText = "abcde";
+            Console.WriteLine("Starting with "+ clearText);
+            Console.WriteLine("Encrypting...");
+            // Step 01
+            String encryptedTextStep01 = Step01.Encrypt(clearText);
+            Console.WriteLine("Step 01: " + encryptedTextStep01);
+            String decryptedTextStep01 = Step01.Decrypt(encryptedTextStep01);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep01);
+            // Step 02
+            String encryptedTextStep02 = Step02.Encrypt(encryptedTextStep01, 'q', 2);
+            Console.WriteLine("Step 02: " + encryptedTextStep02);
+            String decryptedTextStep02 = Step02.Decrypt(encryptedTextStep02, 2);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep02);
+            //Step 03
+            String encryptedTextStep03 = Step03.Encrypt(encryptedTextStep02);
+            Console.WriteLine("Step 03: " + encryptedTextStep03);
+            String decryptedTextStep03 = Step03.Decrypt(encryptedTextStep03);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep03);
+            //Step 04
+            String encryptedTextStep04 = Step04.Encrypt(encryptedTextStep03);
+            Console.WriteLine("Step 04: " + encryptedTextStep04);
+            String decryptedTextStep04 = Step04.Decrypt(encryptedTextStep04);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep04);
+            //Step 05
+            String encryptedTextStep05 = Step05.Encrypt(encryptedTextStep04);
+            Console.WriteLine("Step 05: " + encryptedTextStep05);
+            String decryptedTextStep05 = Step05.Decrypt(encryptedTextStep05);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep05);
+            //Step 06
+            String encryptedTextStep06 = Step06.Encrypt(encryptedTextStep05);
+            Console.WriteLine("Step 06: " + encryptedTextStep06);
+            String decryptedTextStep06 = Step06.Decrypt(encryptedTextStep06);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep06);
+            //Step 07
+            String encryptedTextStep07 = Step07.Encrypt(encryptedTextStep06);
+            Console.WriteLine("Step 07: " + encryptedTextStep07);
+            String decryptedTextStep07 = Step07.Decrypt(encryptedTextStep07);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep07);
+            //Step 08
+            String encryptedTextStep08 = Step08.Encrypt(encryptedTextStep07);
+            Console.WriteLine("Step 08: " + encryptedTextStep08);
+            String decryptedTextStep08 = Step08.Decrypt(encryptedTextStep08);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep08);
+            //Step 09
+            String encryptedTextStep09 = Step09.Encrypt(encryptedTextStep08);
+            Console.WriteLine("Step 09: " + encryptedTextStep09);
+            String decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep09);
+            //Step 10
+            int[] mapping = BuildRandomMapping();
+            String encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
+            Console.WriteLine("Step 10: " + encryptedTextStep10);
+            String decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep10);
         }
     }
 }

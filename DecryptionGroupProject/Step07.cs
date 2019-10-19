@@ -11,7 +11,7 @@ namespace CyberSecurityGroupProject
     {
             /// <summary>
             /// Encrypt the String
-            /// From the left, add 1, then 2, then 3 to each character up to 100 inclusive,
+            /// From the left, add 1, then 2, then 3 to each character up to 25 inclusive,
             /// then start from 1 again. 
             /// For example: "abcd" becomes "bdfh".
             /// </summary>
@@ -24,7 +24,7 @@ namespace CyberSecurityGroupProject
                 for (int i = 0; i < text.Length; i++) {
                     encryptedText += (char)(((int)text.ToCharArray()[i]) + increment);
                     increment++;
-                    if (increment == 101) { increment = 1; }
+                    if (increment == 26) { increment = 1; }
                 }
             return encryptedText;
             }
@@ -41,7 +41,7 @@ namespace CyberSecurityGroupProject
             {
                 decryptedText += (Char)(((int)text.ToCharArray()[i]) - increment);
                 increment++;
-                if (increment == 101) { increment = 1; }
+                if (increment == 26) { increment = 1; }
             }
             return decryptedText;
         }

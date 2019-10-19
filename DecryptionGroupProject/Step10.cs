@@ -13,8 +13,9 @@ namespace CyberSecurityGroupProject
     class Step10
     {
         /// <summary>
-        /// Map every character to a different character using a mapping array.
-        /// For example text = "acb" mapping array = 'n', 'p', 'k' then the encrypted string = "nkp"
+        /// Map every character to a different character using a mapping array. 
+        /// "Caesar Substitution" https://studio.code.org/s/hoc-encryption/stage/1/puzzle/1
+        /// For example text = "adbc" mapping array = 'n', 'p', 'k', 'z', 'q' then the encrypted string = "nzpk"
         /// </summary>
         /// <param name="text">The text to be mapped. Characters in text must be from 1 to 127, inclusive. </param>
         /// <param name="mapping">The mapping array</param>
