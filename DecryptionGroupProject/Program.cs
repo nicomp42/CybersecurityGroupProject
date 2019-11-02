@@ -171,5 +171,12 @@ namespace CyberSecurityGroupProject
             String decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
             Console.WriteLine("         Decrypts to " + decryptedTextStep10);
         }
+        /// <summary>
+        /// This step will encrypt but not decrypt so let's not use it 
+        /// </summary>
+        private static void TestStep11() {
+            String test = "Hello World";
+            byte[] encryptyed = Step11.Encrypt(test);
+        }
     }
 }

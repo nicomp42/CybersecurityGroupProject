@@ -10,7 +10,7 @@ namespace CyberSecurityGroupProject
     {
         /// <summary>
         /// Encrypt the String
-        /// XOR the low bit of each char in text with 1.
+        /// XOR the low bit of each char in text with 1. This flips the state of the bit: 1 becomes 0, 0 becomes 1
         /// For example: "abcde" becomes  "`cbed"
         /// </summary>
         /// <param name="text">String to be encrypted.Characters in text must be from 1 to 127, inclusive. </param>
