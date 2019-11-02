@@ -16,10 +16,11 @@ namespace CyberSecurityGroupProject
         /// <returns>Encrypted string</returns>
         public static byte[] Encrypt(String text)
         {
-            SHA1 sha1 = new SHA1();
-            byte[] bytes = Encoding.ASCII.GetBytes(text);
-            byte[] encrypted = sha1.ComputeHash(bytes);
-            return encrypted;
+            /*            SHA1 sha1 = new SHA1();
+                        byte[] bytes = System.Text.Encoding.ASCII.GetBytes(text);
+                        byte[] encrypted = sha1.ComputeHash(bytes);
+                        return encrypted; */
+            return (new Byte[5]);
         }
         /// <summary>
         /// Decrypt the data, but we can't

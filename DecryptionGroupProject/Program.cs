@@ -12,6 +12,7 @@ namespace CyberSecurityGroupProject
     {
         static void Main(string[] args)
         {
+            TestStep12();
             PerformStepByStepTest();
             PerformTestCases();
             Console.ReadLine();
@@ -65,10 +66,14 @@ namespace CyberSecurityGroupProject
             encryptedText = Step09.Encrypt(encryptedText);
             int[] mapping = BuildRandomMapping();
             encryptedText = Step10.Encrypt(encryptedText, mapping);
+            // Slip Step 11 because it's a one-way encryption
+            //encryptedText = Step12.Encrypt(encryptedText);
 
             Console.WriteLine("Decrypting " + encryptedText);
 
             String decryptedText;
+            //decryptedText = Step12.Decrypt(encryptedText);
+            // Slip Step 11 because it's a one-way encryption
             decryptedText = Step10.Decrypt(encryptedText, mapping);
             decryptedText = Step09.Decrypt(decryptedText);
             decryptedText = Step08.Decrypt(decryptedText);
@@ -170,6 +175,12 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Step 10: " + encryptedTextStep10);
             String decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
             Console.WriteLine("         Decrypts to " + decryptedTextStep10);
+            // We skip Step 11 because it uses one-way encryption
+            // Step 12
+            String encryptedTextStep12 = Step12.Encrypt(encryptedTextStep10);
+            Console.WriteLine("Step 12: " + encryptedTextStep12);
+            String decryptedTextStep12 = Step12.Decrypt(encryptedTextStep12);
+            Console.WriteLine("         Decrypts to " + decryptedTextStep12);
         }
         /// <summary>
         /// This step will encrypt but not decrypt so let's not use it 
@@ -177,6 +188,26 @@ namespace CyberSecurityGroupProject
         private static void TestStep11() {
             String test = "Hello World";
             byte[] encryptyed = Step11.Encrypt(test);
+        }
+        /// <summary>
+        /// A stand-alone test for Step 12 'cause it's a little complicated relative to the others 
+        /// </summary>
+        private static void TestStep12()
+        {
+            String test = "abc";
+            String encrypted = Step12.Encrypt(test);
+            String decrypted = Step12.Decrypt(encrypted);
+            Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to " + decrypted);
+//                  01234567890
+            test = "          ";
+            encrypted = Step12.Encrypt(test);
+            decrypted = Step12.Decrypt(encrypted);
+            Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to " + decrypted);
+            //                  01234567890
+            test = "!@#$%^&*()_+{}\":>?<";
+            encrypted = Step12.Encrypt(test);
+            decrypted = Step12.Decrypt(encrypted);
+            Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to " + decrypted);
         }
     }
 }
