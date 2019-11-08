@@ -15,11 +15,13 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">The string to process</param>
         /// <returns>The encrypted string</returns>
-        public static String Encrypt(String text)
+        public static byte[] Encrypt(byte[] text)
         {
-            String encryptedText = "";
-            foreach (Char c in text) {
-                encryptedText += (char)(c + 1);
+            byte[] encryptedText = new byte[text.Length];
+            int i = 0;
+            foreach (Byte b in text) {
+                encryptedText[i] = (byte)(b + 1);
+                i++;
             }
             return encryptedText;
         }
@@ -30,12 +32,13 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">The string to process</param>
         /// <returns>The encrypted string</returns>
-        public static String Decrypt(String text)
+        public static byte[] Decrypt(byte[] text)
         {
-            String decryptedText = "";
-            foreach (Char c in text)
-            {
-                decryptedText += (char)(c - 1);
+            byte[] decryptedText = new byte[text.Length];
+            int i = 0;
+            foreach (Byte b in text) {
+                decryptedText[i] = (byte)(b - 1);
+                i++;
             }
             return decryptedText;
         }

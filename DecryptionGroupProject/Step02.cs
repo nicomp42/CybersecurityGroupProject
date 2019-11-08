@@ -3,6 +3,7 @@
  * nicholdw@ucmail.uc.edu
  */
 using System;
+using System.Collections.Generic;
 
 namespace CyberSecurityGroupProject
 {
@@ -16,12 +17,20 @@ namespace CyberSecurityGroupProject
         /// <param name="padding">The single char to use as the padding</param>
         /// <param name="count">The number of padding characters on either side of the string</param>
         /// <returns>The encrypted string</returns>
-        public static String Encrypt(String text, char padding, int count) {
-            String encryptedText = "";
-            String paddingString = new string(padding, count);
-            foreach(char c in text)
-            {
-                encryptedText += paddingString + c + paddingString;
+        public static byte[] Encrypt(Byte[] text, char padding, int count) {
+            Byte[] encryptedText = new byte[text.Length + text.Length * (count * 2)];
+            int i = 0;
+            foreach(Byte b in text) {
+                for (int j = 0; j < count; j++) {
+                    encryptedText[i] = (byte)padding;
+                    i++;
+                }
+                encryptedText[i] = b;
+                i++;
+                for (int j = 0; j < count; j++) {
+                    encryptedText[i] = (byte)padding;
+                    i++;
+                }
             }
             return encryptedText;
         }
@@ -34,15 +43,19 @@ namespace CyberSecurityGroupProject
         /// <param name="padding">The single char to use as the padding</param>
         /// <param name="count">The number of padding characters on either side of the string</param>
         /// <returns>The encrypted string</returns>
-        public static String Decrypt(String text, int count)
+        public static Byte[] Decrypt(Byte[] text, int count)
         {
-            String decryptedText = "";
-            String decryptedTextTmp = text.Substring(2);       // Chop off the first two padding characters
-            decryptedTextTmp = decryptedTextTmp.Substring(0, decryptedTextTmp.Length-2);       // Chop off the last two padding characters
-            int idx = 0;
-            while (idx < decryptedTextTmp.Length) {
-                decryptedText += decryptedTextTmp.Substring(idx,1);
+            Byte[] decryptedText;
+            List<Byte> tmpBytes = new List<Byte>();
+            int idx = count;
+            while (idx < text.Length) {
+                tmpBytes.Add(text[idx]);
                 idx += count * 2 + 1;
+            }
+            idx = 0;
+            decryptedText = new Byte[tmpBytes.Count];
+            foreach (Byte b in tmpBytes) {
+                decryptedText[idx] = b;
             }
             return decryptedText;
         }
