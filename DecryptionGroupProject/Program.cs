@@ -14,9 +14,9 @@ namespace CyberSecurityGroupProject
     {
         static void Main(string[] args)
         {
-//          TestStep12();
-//          TestStep09();
-            TestStep10();
+            //TestStep12();
+            //TestStep09();
+            //TestStep10();
             PerformStepByStepTest();
             PerformTestCases();
             Console.ReadLine();
@@ -238,7 +238,7 @@ namespace CyberSecurityGroupProject
         /// </summary>
         private static void TestStep12()
         {
-            Byte[] test = Encoding.ASCII.GetBytes("abc");
+            Byte[] test = Encoding.ASCII.GetBytes("abcd");
             Byte[] encrypted = Step12.Encrypt(test);
             Byte[] decrypted = Step12.Decrypt(encrypted);
             Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
@@ -247,7 +247,7 @@ namespace CyberSecurityGroupProject
             encrypted = Step12.Encrypt(test);
             decrypted = Step12.Decrypt(encrypted);
             Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
-            //                  01234567890
+//                  01234567890
             test = Encoding.ASCII.GetBytes("!@#$%^&*()_+{}\":>?<");
             encrypted = Step12.Encrypt(test);
             decrypted = Step12.Decrypt(encrypted);
