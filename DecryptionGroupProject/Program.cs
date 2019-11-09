@@ -5,6 +5,7 @@
  * nicholdw@ucmail.uc.edu
  */
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace CyberSecurityGroupProject
@@ -13,9 +14,12 @@ namespace CyberSecurityGroupProject
     {
         static void Main(string[] args)
         {
-//          TestStep12();
-            PerformStepByStepTest();
-            PerformTestCases();
+            //          TestStep12();
+            //PerformStepByStepTest();
+            //PerformTestCases();
+            Byte[] test = BuildRandomMapping2();
+            Console.WriteLine("Random Mapping: " + ToString(test));
+
             Console.ReadLine();
         }
 
@@ -66,7 +70,7 @@ namespace CyberSecurityGroupProject
             encryptedText = Step07.Encrypt(encryptedText);
             encryptedText = Step08.Encrypt(encryptedText);
             encryptedText = Step09.Encrypt(encryptedText);
-            byte[] mapping = BuildRandomMapping();
+            byte[] mapping = BuildRandomMapping2();
             encryptedText = Step10.Encrypt(encryptedText, mapping);
             // Slip Step 11 because it's a one-way encryption
             encryptedText = Step12.Encrypt(encryptedText);
@@ -116,6 +120,28 @@ namespace CyberSecurityGroupProject
                         if (mapping[j] == tmpMap) { found = true; /*Console.Write(i + " ");*/ break; }
                     }
                     if (!found) { mapping[i] = tmpMap; break; }
+                }
+            }
+            return mapping;
+        }
+
+        public static Byte[] BuildRandomMapping2()
+        {
+            Byte[] mapping = new byte[256];
+            Random r = new Random(42);
+            Dictionary<byte, bool> dict = new Dictionary<byte, bool>();
+            for (int i = 0; i < mapping.Length; i++)
+            {
+                bool foundByte = false;
+                while (!foundByte)
+                {
+                    byte generatedByte = (Byte)r.Next(256);
+                    if (!dict.ContainsKey(generatedByte))
+                    {
+                        mapping[i] = generatedByte;
+                        dict.Add(generatedByte, true);
+                        foundByte = true;
+                    }
                 }
             }
             return mapping;
@@ -172,7 +198,7 @@ namespace CyberSecurityGroupProject
             Byte[] decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
             Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep09));
             //Step 10
-            Byte[] mapping = BuildRandomMapping();
+            Byte[] mapping = BuildRandomMapping2();
             Byte[] encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
             Console.WriteLine("Step 10: " + ToString(encryptedTextStep10));
             Byte[] decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
