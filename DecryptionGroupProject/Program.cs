@@ -65,7 +65,7 @@ namespace CyberSecurityGroupProject
             encryptedText = Step07.Encrypt(encryptedText);
             encryptedText = Step08.Encrypt(encryptedText);
             encryptedText = Step09.Encrypt(encryptedText);
-            int[] mapping = BuildRandomMapping();
+            byte[] mapping = BuildRandomMapping();
             encryptedText = Step10.Encrypt(encryptedText, mapping);
             // Slip Step 11 because it's a one-way encryption
             encryptedText = Step12.Encrypt(encryptedText);
@@ -102,15 +102,15 @@ namespace CyberSecurityGroupProject
         /// This a brute-force algorithm that may take a few milliseconds. 
         /// </summary>
         /// <param name="mapping">The random map</param>
-        public static int[] BuildRandomMapping() {
-            int[] mapping = new int[255];
+        public static Byte[] BuildRandomMapping() {
+            Byte[] mapping = new Byte[256];
             Random r = new Random(42);
             for (int i = 0; i < mapping.Length; i++) {
-                int tmpMap;
+                Byte tmpMap;
                 while (true) {
                     Boolean found;
                     found = false;
-                    tmpMap = r.Next(256);
+                    tmpMap = (Byte)r.Next(256);
                     for (int j = 0; j < mapping.Length; j++) {  // Find a mapping we have not used yet.
                         if (mapping[j] == tmpMap) { found = true; /*Console.Write(i + " ");*/ break; }
                     }
@@ -126,7 +126,7 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Starting with "+ clearText);
             Console.WriteLine("Encrypting...");
             // Step 01
-            Byte[] encryptedTextStep01 = Step01.Encrypt(clearText);
+            Byte[] encryptedTextStep01 = Step01.Encrypt(Encoding.ASCII.GetBytes(clearText));
             Console.WriteLine("Step 01: " + encryptedTextStep01);
             Byte[] decryptedTextStep01 = Step01.Decrypt(encryptedTextStep01);
             Console.WriteLine("         Decrypts to " + decryptedTextStep01);
@@ -171,7 +171,7 @@ namespace CyberSecurityGroupProject
             Byte[] decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
             Console.WriteLine("         Decrypts to " + decryptedTextStep09);
             //Step 10
-            int[] mapping = BuildRandomMapping();
+            Byte[] mapping = BuildRandomMapping();
             Byte[] encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
             Console.WriteLine("Step 10: " + encryptedTextStep10);
             Byte[] decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
@@ -187,25 +187,25 @@ namespace CyberSecurityGroupProject
         /// This step will encrypt but not decrypt so let's not use it 
         /// </summary>
         private static void TestStep11() {
-            String test = "Hello World";
-            byte[] encryptyed = Step11.Encrypt(test);
+            Byte[] test = Encoding.ASCII.GetBytes("Hello World");
+            Byte[] encryptyed = Step11.Encrypt(test);
         }
         /// <summary>
         /// A stand-alone test for Step 12 'cause it's a little complicated relative to the others 
         /// </summary>
         private static void TestStep12()
         {
-            String test = "abc";
-            String encrypted = Step12.Encrypt(test);
-            String decrypted = Step12.Decrypt(encrypted);
+            Byte[] test = Encoding.ASCII.GetBytes("abc");
+            Byte[] encrypted = Step12.Encrypt(test);
+            Byte[] decrypted = Step12.Decrypt(encrypted);
             Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to >>>" + decrypted + "<<<");
 //                  01234567890
-            test = "          ";
+            test = Encoding.ASCII.GetBytes("          ");
             encrypted = Step12.Encrypt(test);
             decrypted = Step12.Decrypt(encrypted);
             Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to >>>" + decrypted + "<<<");
             //                  01234567890
-            test = "!@#$%^&*()_+{}\":>?<";
+            test = Encoding.ASCII.GetBytes("!@#$%^&*()_+{}\":>?<");
             encrypted = Step12.Encrypt(test);
             decrypted = Step12.Decrypt(encrypted);
             Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to >>>" + decrypted + "<<<");

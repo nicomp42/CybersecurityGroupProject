@@ -44,11 +44,13 @@ namespace CyberSecurityGroupProject
         /// <param name="text">String to be decrypted.</param>
         /// <returns>Decrypted String</returns>
         public static Byte[] Decrypt(Byte[]  text) {
-            String tmp = Convert.ToString(text[0]) + Convert.ToString(text[1])
-            int checkSum = Convert.ToInt32()
-            Byte[] decryptedText = text.Substring(2);
-            int checkSum = System.Convert.ToInt32(text.Substring(0, 2));    // Extract the checksum and convert to int
-            decryptedText = decryptedText.Substring(0, decryptedText.Length - checkSum);    // Lop off the random characters
+            String tmp = Convert.ToString(text[0]) + Convert.ToString(text[1]);
+            int checkSum = Convert.ToInt32(tmp);
+            Byte[] decryptedText = new Byte[text.Length - 2 - checkSum];
+            int idx = 0;
+            for (int i = 2; i < text.Length - 2 - checkSum; i++) {
+                decryptedText[idx] = text[i];
+            }
             return decryptedText;
         }
     }

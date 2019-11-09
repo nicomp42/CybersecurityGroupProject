@@ -20,7 +20,7 @@ namespace CyberSecurityGroupProject
         /// <param name="text">The text to be mapped.</param>
         /// <param name="mapping">The mapping array. Must be 256 unique values!</param>
         /// <returns>The encoded string</returns>
-        public static String Encrypt(Byte[] text, Byte[] mapping)
+        public static Byte[] Encrypt(Byte[] text, Byte[] mapping)
         {
             Byte[] encryptedText = new Byte[text.Length];
             int idx = 0;
@@ -36,18 +36,18 @@ namespace CyberSecurityGroupProject
         /// <param name="text">The text to be decrypted</param>
         /// <param name="mapping">The mapping array used to encrypt the text</param>
         /// <returns>The decrypted string</returns>
-        public static String Decrypt(String text, int[] mapping)
+        public static Byte[] Decrypt(Byte[] text, Byte[] mapping)
         {
             Byte[] decryptedText = new Byte[text.Length];
 
             int idx = 0;
             foreach (Byte b in text) {
                 for (int i = 0; i < 256; i++) {
-                    if (text[idx] == mapping[i]) { decryptedText[idx] = i; break; }
+                    if (text[idx] == mapping[i]) { decryptedText[idx] = (byte)i; break; }
                 }
                 idx++;
             }
-            return encryptedText;
+            return decryptedText;
         }
     }
 }

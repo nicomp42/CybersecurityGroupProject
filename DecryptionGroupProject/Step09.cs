@@ -27,17 +27,16 @@ namespace CyberSecurityGroupProject
         {
             return(SwapFirstAndLast(text));
         }
-        public static Byte[] SwapFirstAndLast(Byte[] text) {
+        private static Byte[] SwapFirstAndLast(Byte[] text) {
             Byte[] encryptedText= null;
+            encryptedText = (Byte[]) text.Clone();
             if (text.Length > 1) {
                 Byte start = text[0];
                 Byte end = text[text.Length-1];
-                encryptedText = text.Clone();
                 encryptedText[0] = end;
                 encryptedText[encryptedText.Length-1] = start;
             }
             return encryptedText;
         }
-
     }
 }
