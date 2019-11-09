@@ -5,6 +5,7 @@
  * nicholdw@ucmail.uc.edu
  */
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace CyberSecurityGroupProject
@@ -68,7 +69,7 @@ namespace CyberSecurityGroupProject
             encryptedText = Step07.Encrypt(encryptedText);
             encryptedText = Step08.Encrypt(encryptedText);
             encryptedText = Step09.Encrypt(encryptedText);
-            byte[] mapping = BuildRandomMapping();
+            byte[] mapping = BuildRandomMapping2();
             encryptedText = Step10.Encrypt(encryptedText, mapping);
             // Slip Step 11 because it's a one-way encryption
             encryptedText = Step12.Encrypt(encryptedText);
@@ -122,6 +123,29 @@ namespace CyberSecurityGroupProject
             }
             return mapping;
         }
+
+        public static Byte[] BuildRandomMapping2()
+        {
+            Byte[] mapping = new byte[256];
+            Random r = new Random(42);
+            Dictionary<byte, bool> dict = new Dictionary<byte, bool>();
+            for (int i = 0; i < mapping.Length; i++)
+            {
+                bool foundByte = false;
+                while (!foundByte)
+                {
+                    byte generatedByte = (Byte)r.Next(256);
+                    if (!dict.ContainsKey(generatedByte))
+                    {
+                        mapping[i] = generatedByte;
+                        dict.Add(generatedByte, true);
+                        foundByte = true;
+                    }
+                }
+            }
+            return mapping;
+        }
+
         private static Byte[] BuildRandomMapping3() {
             Byte[] mapping = new Byte[256];
             for (int i = 0; i < 256; i++) {mapping[i] = (byte)i;}
