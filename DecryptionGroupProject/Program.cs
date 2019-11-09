@@ -14,6 +14,8 @@ namespace CyberSecurityGroupProject
         static void Main(string[] args)
         {
 //          TestStep12();
+//          TestStep09();
+            TestStep10();
             PerformStepByStepTest();
             PerformTestCases();
             Console.ReadLine();
@@ -120,6 +122,22 @@ namespace CyberSecurityGroupProject
             }
             return mapping;
         }
+        private static Byte[] BuildRandomMapping3() {
+            Byte[] mapping = new Byte[256];
+            for (int i = 0; i < 256; i++) {mapping[i] = (byte)i;}
+            Random r = new Random(42);
+            for (int i = 0; i < 1000; i++) {
+                int idx1, idx2;
+                byte b1, b2;
+                idx1 = r.Next(255);
+                idx2 = r.Next(255);
+                b1 = mapping[idx1];
+                b2 = mapping[idx2];
+                mapping[idx1] = b2;
+                mapping[idx2] = b1;
+            }
+            return mapping;
+        }
         /// <summary> Run a single test case and print every intermediate step for debugging.
         /// The results of each step are printed but not evaluated. </summary>
         private static void PerformStepByStepTest() {
@@ -172,7 +190,7 @@ namespace CyberSecurityGroupProject
             Byte[] decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
             Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep09));
             //Step 10
-            Byte[] mapping = BuildRandomMapping();
+            Byte[] mapping = BuildRandomMapping3();
             Byte[] encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
             Console.WriteLine("Step 10: " + ToString(encryptedTextStep10));
             Byte[] decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
@@ -224,7 +242,23 @@ namespace CyberSecurityGroupProject
             result = Step02.Decrypt(result, 2);
             Console.WriteLine("Step 02 Decrypt: " + ToString(result));
         }
+        private static void TestStep09() {
+            Byte[] result;
+            result = Step09.Encrypt(Encoding.ASCII.GetBytes("abcdef"));
+            Console.WriteLine("Step 09 Encrypt: >>>" + ToString(result) + "<<<");
 
+            result = Step09.Decrypt(result);
+            Console.WriteLine("Step 09 Decrypt: >>>" + ToString(result) + "<<<");
+        }
+        private static void TestStep10() {
+            Byte[] result;
+            Byte[] randomMapping = BuildRandomMapping3();
+            result = Step10.Encrypt(Encoding.ASCII.GetBytes("abc"), randomMapping);
+            Console.WriteLine("Step 10 Encrypt: >>>" + ToString(result) + "<<<");
+     
+            result = Step10.Decrypt(result, randomMapping);
+            Console.WriteLine("Step 10 Decrypt: >>>" + ToString(result) + "<<<");
+        }
         private static String ToString(Byte[] text) {
             return Encoding.Default.GetString(text);
         }
