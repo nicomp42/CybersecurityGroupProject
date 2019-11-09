@@ -13,11 +13,12 @@ namespace CyberSecurityGroupProject
     {
         static void Main(string[] args)
         {
-//            TestStep12();
+//          TestStep12();
             PerformStepByStepTest();
             PerformTestCases();
             Console.ReadLine();
         }
+
         /// <summary>
         /// Run a suite of test cases, evaluate the results, and print the evaulation to the console
         /// </summary>
@@ -210,6 +211,20 @@ namespace CyberSecurityGroupProject
             decrypted = Step12.Decrypt(encrypted);
             Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
         }
+
+        /// <summary>
+        /// A stand-alone test for Step 2
+        /// </summary>
+        private static void TestStep2()
+        {
+            Byte[] result;
+            result = Step02.Encrypt(Encoding.ASCII.GetBytes("abc"), 'q', 2);
+            Console.WriteLine("Step 02 Encrypt: " + ToString(result));
+
+            result = Step02.Decrypt(result, 2);
+            Console.WriteLine("Step 02 Decrypt: " + ToString(result));
+        }
+
         private static String ToString(Byte[] text) {
             return Encoding.Default.GetString(text);
         }

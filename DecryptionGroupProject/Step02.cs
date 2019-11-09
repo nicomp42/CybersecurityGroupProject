@@ -39,8 +39,7 @@ namespace CyberSecurityGroupProject
         /// Remove padding from both sides of each character in the string
         /// For example: "qqaqqqqbqqqqcqq", 2 becomes abc
         /// </summary>
-        /// <param name="text">The string to be encrypted</param>
-        /// <param name="padding">The single char to use as the padding</param>
+        /// <param name="text">The string to be decrypted</param>
         /// <param name="count">The number of padding characters on either side of the string</param>
         /// <returns>The encrypted string</returns>
         public static Byte[] Decrypt(Byte[] text, int count)
@@ -52,10 +51,11 @@ namespace CyberSecurityGroupProject
                 tmpBytes.Add(text[idx]);
                 idx += count * 2 + 1;
             }
-            idx = 0;
+
             decryptedText = new Byte[tmpBytes.Count];
-            foreach (Byte b in tmpBytes) {
-                decryptedText[idx] = b;
+            for (idx = 0; idx < tmpBytes.Count; idx++)
+            {
+                decryptedText[idx] = tmpBytes[idx];
             }
             return decryptedText;
         }
