@@ -27,6 +27,7 @@ namespace CyberSecurityGroupProject
             }
             checksum %= 25;    // Now checksum will be from 0 to 24, inclusive
             String checksumString = Convert.ToString(checksum);
+            encryptedText = new byte[text.Length + 2 + checksum];
             encryptedText[0] = Convert.ToByte(checksumString.Substring(0, 1));
             encryptedText[1] = Convert.ToByte(checksumString.Substring(1, 1));
             int idx = 2;

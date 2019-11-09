@@ -210,7 +210,7 @@ namespace CyberSecurityGroupProject
             decrypted = Step12.Decrypt(encrypted);
             Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
         }
-        private String ToString(Byte[] text) {
+        private static String ToString(Byte[] text) {
             return Encoding.Default.GetString(text);
         }
     }
