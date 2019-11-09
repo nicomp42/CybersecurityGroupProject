@@ -18,10 +18,10 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">Bytes to encrypt</param>
         /// <returns>Encrypted bytes</returns>
-        public static Byte[] Encrypt(char[] text) {
+        public static Byte[] Encrypt(Byte[] text) {
             Byte[] encryptedText = new Byte[text.Length];
             Byte[] bytes = new Byte[text.Length + 1];
-            Byte[] tmp = Encoding.ASCII.GetBytes(text);
+            Byte[] tmp = text;
             byte lastHighBit = 0x00, currentHighBit = 0x00;
             // Copy the original text, as bytes, into the target byte array, offset 1
             for (int i = 0; i < tmp.Length; i++) {
