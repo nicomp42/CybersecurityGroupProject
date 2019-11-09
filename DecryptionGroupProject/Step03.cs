@@ -15,11 +15,9 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive. </param>
         /// <returns>Encrypted String</returns>
-        public static String Encrypt(String text)
+        public static Byte[] Encrypt(Byte[] text)
         {
-            char[] charArray = text.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
+            return Reverse(text);
         }
         /// <summary>
         /// Reverse the encryption applied in the Encrypt method in this class.
@@ -28,9 +26,17 @@ namespace CyberSecurityGroupProject
         /// <returns>Decrypted String</returns>
         public static String Decrypt(String text)
         {
-            char[] charArray = text.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
+            return Reverse(text);
+        }
+        private static Byte[] Reverse(Byte[] text) {
+            Byte[] encryptedText = new byte[text.Length];
+            int idx = encryptedText.Length - 1;
+            foreach (Byte b in text) {
+                encryptedText[idx] = b;
+                idx--;
+            }
+            return encryptedText;
+
         }
     }
 }
