@@ -127,61 +127,61 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Encrypting...");
             // Step 01
             Byte[] encryptedTextStep01 = Step01.Encrypt(Encoding.ASCII.GetBytes(clearText));
-            Console.WriteLine("Step 01: " + encryptedTextStep01);
+            Console.WriteLine("Step 01: " + ToString(encryptedTextStep01));
             Byte[] decryptedTextStep01 = Step01.Decrypt(encryptedTextStep01);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep01);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep01));
             // Step 02
             Byte[] encryptedTextStep02 = Step02.Encrypt(encryptedTextStep01, 'q', 2);
-            Console.WriteLine("Step 02: " + encryptedTextStep02);
+            Console.WriteLine("Step 02: " + ToString(encryptedTextStep02));
             Byte[] decryptedTextStep02 = Step02.Decrypt(encryptedTextStep02, 2);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep02);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep02));
             //Step 03
             Byte[] encryptedTextStep03 = Step03.Encrypt(encryptedTextStep02);
-            Console.WriteLine("Step 03: " + encryptedTextStep03);
+            Console.WriteLine("Step 03: " + ToString(encryptedTextStep03));
             Byte[] decryptedTextStep03 = Step03.Decrypt(encryptedTextStep03);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep03);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep03));
             //Step 04
             Byte[] encryptedTextStep04 = Step04.Encrypt(encryptedTextStep03);
-            Console.WriteLine("Step 04: " + encryptedTextStep04);
+            Console.WriteLine("Step 04: " + ToString(encryptedTextStep04));
             Byte[] decryptedTextStep04 = Step04.Decrypt(encryptedTextStep04);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep04);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep04));
             //Step 05
             Byte[] encryptedTextStep05 = Step05.Encrypt(encryptedTextStep04);
-            Console.WriteLine("Step 05: " + encryptedTextStep05);
+            Console.WriteLine("Step 05: " + ToString(encryptedTextStep05));
             Byte[] decryptedTextStep05 = Step05.Decrypt(encryptedTextStep05);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep05);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep05));
             //Step 06
             Byte[] encryptedTextStep06 = Step06.Encrypt(encryptedTextStep05);
-            Console.WriteLine("Step 06: " + encryptedTextStep06);
+            Console.WriteLine("Step 06: " + ToString(encryptedTextStep06));
             Byte[] decryptedTextStep06 = Step06.Decrypt(encryptedTextStep06);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep06);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep06));
             //Step 07
             Byte[] encryptedTextStep07 = Step07.Encrypt(encryptedTextStep06);
-            Console.WriteLine("Step 07: " + encryptedTextStep07);
+            Console.WriteLine("Step 07: " + ToString(encryptedTextStep07));
             Byte[] decryptedTextStep07 = Step07.Decrypt(encryptedTextStep07);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep07);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep07));
             //Step 08
             Byte[] encryptedTextStep08 = Step08.Encrypt(encryptedTextStep07);
-            Console.WriteLine("Step 08: " + encryptedTextStep08);
+            Console.WriteLine("Step 08: " + ToString(encryptedTextStep08));
             Byte[] decryptedTextStep08 = Step08.Decrypt(encryptedTextStep08);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep08);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep08));
             //Step 09
             Byte[] encryptedTextStep09 = Step09.Encrypt(encryptedTextStep08);
-            Console.WriteLine("Step 09: " + encryptedTextStep09);
+            Console.WriteLine("Step 09: " + ToString(encryptedTextStep09));
             Byte[] decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep09);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep09));
             //Step 10
             Byte[] mapping = BuildRandomMapping();
             Byte[] encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
-            Console.WriteLine("Step 10: " + encryptedTextStep10);
+            Console.WriteLine("Step 10: " + ToString(encryptedTextStep10));
             Byte[] decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep10);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep10));
             // We skip Step 11 because it uses one-way encryption
             // Step 12
             Byte[] encryptedTextStep12 = Step12.Encrypt(encryptedTextStep10);
-            Console.WriteLine("Step 12: " + encryptedTextStep12);
+            Console.WriteLine("Step 12: " + ToString(encryptedTextStep12));
             Byte[] decryptedTextStep12 = Step12.Decrypt(encryptedTextStep12);
-            Console.WriteLine("         Decrypts to " + decryptedTextStep12);
+            Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep12));
         }
         /// <summary>
         /// This step will encrypt but not decrypt so let's not use it 
@@ -198,17 +198,20 @@ namespace CyberSecurityGroupProject
             Byte[] test = Encoding.ASCII.GetBytes("abc");
             Byte[] encrypted = Step12.Encrypt(test);
             Byte[] decrypted = Step12.Decrypt(encrypted);
-            Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to >>>" + decrypted + "<<<");
+            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
 //                  01234567890
             test = Encoding.ASCII.GetBytes("          ");
             encrypted = Step12.Encrypt(test);
             decrypted = Step12.Decrypt(encrypted);
-            Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to >>>" + decrypted + "<<<");
+            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
             //                  01234567890
             test = Encoding.ASCII.GetBytes("!@#$%^&*()_+{}\":>?<");
             encrypted = Step12.Encrypt(test);
             decrypted = Step12.Decrypt(encrypted);
-            Console.WriteLine("Step 12 test: " + test + " encrypted to " + encrypted + " and decrypted to >>>" + decrypted + "<<<");
+            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
+        }
+        private String ToString(Byte[] text) {
+            return Encoding.Default.GetString(text);
         }
     }
 }
