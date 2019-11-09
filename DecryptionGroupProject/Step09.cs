@@ -14,9 +14,9 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be encrypted.  Characters in text must be from 1 to 127, inclusive. </param>
         /// <returns>Encrypted String</returns>
-        public static String Encrypt(String text)
+        public static Byte[] Encrypt(Byte[] text)
         {
-            String encryptedText = "";
+Byte[] encryptedText = new Byte[text.Length];
             if (text.Length > 1)
             {
                 String start = text.Substring(0, 1);
@@ -30,9 +30,9 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be decrypted. Swap the first and last characters. If the string is length 1, do nothing</param>
         /// <returns>Decrypted String</returns>
-        public static String Decrypt(String text)
+        public static Byte[] Decrypt(Byte[]  text)
         {
-            String decryptedText = "";
+            Byte[] decryptedText = "";
             if (text.Length > 1)
             {
                 String start = text.Substring(0, 1);

@@ -14,15 +14,17 @@ namespace CyberSecurityGroupProject
             /// then start from 1 again. 
             /// For example: "abcd" becomes "bdfh".
             /// </summary>
-            /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive. </param>
+            /// <param name="text">String to be encrypted. Bytes in text must be from 1 to 127, inclusive. </param>
             /// <returns>Encrypted String</returns>
-            public static String Encrypt(String text)
+            public static Byte[] Encrypt(Byte[] text)
             {
-                String encryptedText = "";
+                Byte[] encryptedText = new Byte[text.Length];
                 int increment = 1;
+                int idx = 0;
                 for (int i = 0; i < text.Length; i++) {
-                    encryptedText += (char)(((int)text.ToCharArray()[i]) + increment);
+                    encryptedText[idx] = (byte)(text[idx] + increment);
                     increment++;
+                    idx++;
                     if (increment == 26) { increment = 1; }
                 }
             return encryptedText;
@@ -33,13 +35,14 @@ namespace CyberSecurityGroupProject
         /// <param name="text">String to be decrypted. From the left, subtract 1, then 2, then 3 to each character up to 100 inclusive,
         /// then start again from 1</param>
         /// <returns>Decrypted String</returns>
-        public static String Decrypt(String text) {
-            String decryptedText = "";
+        public static Byte[] Decrypt(Byte[]  text) {
+            Byte[] decryptedText = new Byte[text.Length];
             int increment = 1;
-            for (int i = 0; i < text.Length; i++)
-            {
-                decryptedText += (Char)(((int)text.ToCharArray()[i]) - increment);
+            int idx = 0;
+            for (int i = 0; i < text.Length; i++) {
+                decryptedText[idx] = (byte)(text[idx] - increment);
                 increment++;
+                idx++;
                 if (increment == 26) { increment = 1; }
             }
             return decryptedText;

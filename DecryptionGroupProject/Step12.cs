@@ -18,8 +18,8 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">Bytes to encrypt</param>
         /// <returns>Encrypted bytes</returns>
-        public static String Encrypt(String text) {
-            String encryptedText = "";
+        public static Byte[] Encrypt(Byte[] text) {
+Byte[] encryptedText = new Byte[text.Length];
             Byte[] bytes = new byte[text.Length + 1];
             Byte[] tmp = Encoding.ASCII.GetBytes(text);
             byte lastHighBit = 0x00, currentHighBit = 0x00; ;
@@ -45,9 +45,9 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">Bytes to decrypt</param>
         /// <returns>Decrypted bytes</returns>
-        public static String Decrypt(String text)
+        public static Byte[] Decrypt(Byte[]  text)
         {
-            String decryptedText = "";
+            Byte[] decryptedText = "";
             byte lastHighBit = 0x00, currentHighBit = 0x00; ;
             Byte[] bytes = new byte[text.Length];
             for (int i = 0; i < text.Length; i++) {

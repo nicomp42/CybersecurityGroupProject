@@ -24,7 +24,7 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be decrypted</param>
         /// <returns>Decrypted String</returns>
-        public static String Decrypt(String text)
+        public static Byte[] Decrypt(Byte[]  text)
         {
             return Reverse(text);
         }

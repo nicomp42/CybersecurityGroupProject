@@ -72,7 +72,7 @@ namespace CyberSecurityGroupProject
 
             Console.WriteLine("Decrypting " + encryptedText);
 
-            String decryptedText;
+            Byte[] decryptedText;
             decryptedText = Step12.Decrypt(encryptedText);
             // Slip Step 11 because it's a one-way encryption
             decryptedText = Step10.Decrypt(decryptedText, mapping);
@@ -126,61 +126,61 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Starting with "+ clearText);
             Console.WriteLine("Encrypting...");
             // Step 01
-            String encryptedTextStep01 = Step01.Encrypt(clearText);
+            Byte[] encryptedTextStep01 = Step01.Encrypt(clearText);
             Console.WriteLine("Step 01: " + encryptedTextStep01);
-            String decryptedTextStep01 = Step01.Decrypt(encryptedTextStep01);
+            Byte[] decryptedTextStep01 = Step01.Decrypt(encryptedTextStep01);
             Console.WriteLine("         Decrypts to " + decryptedTextStep01);
             // Step 02
-            String encryptedTextStep02 = Step02.Encrypt(encryptedTextStep01, 'q', 2);
+            Byte[] encryptedTextStep02 = Step02.Encrypt(encryptedTextStep01, 'q', 2);
             Console.WriteLine("Step 02: " + encryptedTextStep02);
-            String decryptedTextStep02 = Step02.Decrypt(encryptedTextStep02, 2);
+            Byte[] decryptedTextStep02 = Step02.Decrypt(encryptedTextStep02, 2);
             Console.WriteLine("         Decrypts to " + decryptedTextStep02);
             //Step 03
-            String encryptedTextStep03 = Step03.Encrypt(encryptedTextStep02);
+            Byte[] encryptedTextStep03 = Step03.Encrypt(encryptedTextStep02);
             Console.WriteLine("Step 03: " + encryptedTextStep03);
-            String decryptedTextStep03 = Step03.Decrypt(encryptedTextStep03);
+            Byte[] decryptedTextStep03 = Step03.Decrypt(encryptedTextStep03);
             Console.WriteLine("         Decrypts to " + decryptedTextStep03);
             //Step 04
-            String encryptedTextStep04 = Step04.Encrypt(encryptedTextStep03);
+            Byte[] encryptedTextStep04 = Step04.Encrypt(encryptedTextStep03);
             Console.WriteLine("Step 04: " + encryptedTextStep04);
-            String decryptedTextStep04 = Step04.Decrypt(encryptedTextStep04);
+            Byte[] decryptedTextStep04 = Step04.Decrypt(encryptedTextStep04);
             Console.WriteLine("         Decrypts to " + decryptedTextStep04);
             //Step 05
-            String encryptedTextStep05 = Step05.Encrypt(encryptedTextStep04);
+            Byte[] encryptedTextStep05 = Step05.Encrypt(encryptedTextStep04);
             Console.WriteLine("Step 05: " + encryptedTextStep05);
-            String decryptedTextStep05 = Step05.Decrypt(encryptedTextStep05);
+            Byte[] decryptedTextStep05 = Step05.Decrypt(encryptedTextStep05);
             Console.WriteLine("         Decrypts to " + decryptedTextStep05);
             //Step 06
-            String encryptedTextStep06 = Step06.Encrypt(encryptedTextStep05);
+            Byte[] encryptedTextStep06 = Step06.Encrypt(encryptedTextStep05);
             Console.WriteLine("Step 06: " + encryptedTextStep06);
-            String decryptedTextStep06 = Step06.Decrypt(encryptedTextStep06);
+            Byte[] decryptedTextStep06 = Step06.Decrypt(encryptedTextStep06);
             Console.WriteLine("         Decrypts to " + decryptedTextStep06);
             //Step 07
-            String encryptedTextStep07 = Step07.Encrypt(encryptedTextStep06);
+            Byte[] encryptedTextStep07 = Step07.Encrypt(encryptedTextStep06);
             Console.WriteLine("Step 07: " + encryptedTextStep07);
-            String decryptedTextStep07 = Step07.Decrypt(encryptedTextStep07);
+            Byte[] decryptedTextStep07 = Step07.Decrypt(encryptedTextStep07);
             Console.WriteLine("         Decrypts to " + decryptedTextStep07);
             //Step 08
-            String encryptedTextStep08 = Step08.Encrypt(encryptedTextStep07);
+            Byte[] encryptedTextStep08 = Step08.Encrypt(encryptedTextStep07);
             Console.WriteLine("Step 08: " + encryptedTextStep08);
-            String decryptedTextStep08 = Step08.Decrypt(encryptedTextStep08);
+            Byte[] decryptedTextStep08 = Step08.Decrypt(encryptedTextStep08);
             Console.WriteLine("         Decrypts to " + decryptedTextStep08);
             //Step 09
-            String encryptedTextStep09 = Step09.Encrypt(encryptedTextStep08);
+            Byte[] encryptedTextStep09 = Step09.Encrypt(encryptedTextStep08);
             Console.WriteLine("Step 09: " + encryptedTextStep09);
-            String decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
+            Byte[] decryptedTextStep09 = Step09.Decrypt(encryptedTextStep09);
             Console.WriteLine("         Decrypts to " + decryptedTextStep09);
             //Step 10
             int[] mapping = BuildRandomMapping();
-            String encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
+            Byte[] encryptedTextStep10 = Step10.Encrypt(encryptedTextStep09, mapping);
             Console.WriteLine("Step 10: " + encryptedTextStep10);
-            String decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
+            Byte[] decryptedTextStep10 = Step10.Decrypt(encryptedTextStep10, mapping);
             Console.WriteLine("         Decrypts to " + decryptedTextStep10);
             // We skip Step 11 because it uses one-way encryption
             // Step 12
-            String encryptedTextStep12 = Step12.Encrypt(encryptedTextStep10);
+            Byte[] encryptedTextStep12 = Step12.Encrypt(encryptedTextStep10);
             Console.WriteLine("Step 12: " + encryptedTextStep12);
-            String decryptedTextStep12 = Step12.Decrypt(encryptedTextStep12);
+            Byte[] decryptedTextStep12 = Step12.Decrypt(encryptedTextStep12);
             Console.WriteLine("         Decrypts to " + decryptedTextStep12);
         }
         /// <summary>

@@ -17,21 +17,25 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive.  </param>
         /// <returns>Encrypted String</returns>
-        public static String Encrypt(String text)
+        public static Byte[] Encrypt(Byte[] text)
         {
-            String encryptedText = text;
+            Byte[] encryptedText = null;
+            Random r = new Random();
             int checksum = 0;
-            foreach (char c in text) {
-                checksum += System.Convert.ToInt32(c);
+            foreach (Byte b in text) {
+                checksum += b;
             }
             checksum %= 25;    // Now checksum will be from 0 to 24, inclusive
-            Random r = new Random();
+            String checksumString = Convert.ToString(checksum);
+            encryptedText[0] = Convert.ToByte(checksumString.Substring(0, 1));
+            encryptedText[1] = Convert.ToByte(checksumString.Substring(1, 1));
+            int idx = 2;
+            encryptedText = new byte[text.Length + 2 + checksum];
             for (int i = 0; i < checksum; i++) {
-                encryptedText += System.Convert.ToChar(r.Next(100) + 30);
+                int myRandom = r.Next(100) + 30;
+                encryptedText[idx] = Convert.ToByte(r.Next(100) + 30);
+                idx++;
             }
-            encryptedText = System.Convert.ToString(checksum) + encryptedText;
-            if (checksum < 10) { encryptedText = "0" + encryptedText; } // Add the zero padding if necessary
-//          if (checksum == 0) { encryptedText = "0" + encryptedText; } // Add more zero padding if necessary
             return encryptedText;
         }
         /// <summary>
@@ -39,8 +43,10 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to be decrypted.</param>
         /// <returns>Decrypted String</returns>
-        public static String Decrypt(String text) {
-            String decryptedText = text.Substring(2);
+        public static Byte[] Decrypt(Byte[]  text) {
+            String tmp = Convert.ToString(text[0]) + Convert.ToString(text[1])
+            int checkSum = Convert.ToInt32()
+            Byte[] decryptedText = text.Substring(2);
             int checkSum = System.Convert.ToInt32(text.Substring(0, 2));    // Extract the checksum and convert to int
             decryptedText = decryptedText.Substring(0, decryptedText.Length - checkSum);    // Lop off the random characters
             return decryptedText;

@@ -14,39 +14,32 @@ namespace CyberSecurityGroupProject
         /// If the number of chars in text is odd, do not change the last character</param>
         /// For example "abcd" = "badc".
         /// </summary>
-        /// <param name="text">String to be encrypted.  Characters in text must be from 1 to 127, inclusive. 
-        /// <returns>Encrypted String</returns>
-        public static String Encrypt(String text)
+        /// <param name="text">Bytes to be encrypted.  Characters in text must be from 1 to 127, inclusive. 
+        /// <returns>Encrypted Bytes</returns>
+        public static Byte[] Encrypt(Byte[] text)
         {
-            String encryptedText = "";
-            try {
-                for (int i = 0; i < text.Length; i += 2) {
-                    encryptedText += text.Substring(i+1, 1);
-                    encryptedText += text.Substring(i, 1);
-                }
-            } catch (Exception ex) {
-                // If we end up here the string has an odd number of chars in it. 
-                encryptedText += text.Substring(text.Length - 1, 1);
-            }
-            return encryptedText;
+            return SwapMe(text);
         }
         /// <summary>
         /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
-        /// <param name="text">String to be decrypted. Swap every other character to reverse the Encrypt method above</param>
-        /// <returns>Decrypted String</returns>
-        public static String Decrypt(String text)
+        /// <param name="text">Bytes to be decrypted. Swap every other character to reverse the Encrypt method above</param>
+        /// <returns>Decrypted Bytes</returns>
+        public static Byte[] Decrypt(Byte[]  text)
         {
-            String decryptedText = "";
+            return SwapMe(text);
+        }
+        private static Byte[] SwapMe(Byte[] text) {
+            Byte[] decryptedText = new Byte[text.Length];
             try {
-                for (int i = 0; i < text.Length; i += 2)
-                {
-                    decryptedText += text.Substring(i + 1, 1);
-                    decryptedText += text.Substring(i, 1);
+                for (int i = 0; i < text.Length; i += 2) {
+                    decryptedText[i] = text[i + 1];
+                    decryptedText[i + 1] = text[i];
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 // If we end up here the string has an odd number of chars in it. 
-                decryptedText += text.Substring(text.Length - 1, 1);
+                decryptedText[text.Length - 1] = text[text.Length - 1];
             }
             return decryptedText;
         }

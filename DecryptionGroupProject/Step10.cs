@@ -22,7 +22,7 @@ namespace CyberSecurityGroupProject
         /// <returns>The encoded string</returns>
         public static String Encrypt(String text, int[] mapping)
         {
-            String encryptedText = "";
+Byte[] encryptedText = new Byte[text.Length];
             foreach (Char c in text) {
 //              Console.Write(c); Console.Write(":"); Console.Write(System.Convert.ToInt32(c)); Console.Write(",");
                 encryptedText = encryptedText + System.Convert.ToChar(mapping[System.Convert.ToInt32(c)]);
@@ -37,7 +37,7 @@ namespace CyberSecurityGroupProject
         /// <returns>The decrypted string</returns>
         public static String Decrypt(String text, int[] mapping)
         {
-            String decryptedText = "";
+            Byte[] decryptedText = "";
             foreach (Char c in text) {
                 int val;
                 val = System.Convert.ToInt32(c);
