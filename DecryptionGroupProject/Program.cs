@@ -14,12 +14,9 @@ namespace CyberSecurityGroupProject
     {
         static void Main(string[] args)
         {
-            //          TestStep12();
-            //PerformStepByStepTest();
-            //PerformTestCases();
-            Byte[] test = BuildRandomMapping2();
-            Console.WriteLine("Random Mapping: " + ToString(test));
-
+//          TestStep12();
+            PerformStepByStepTest();
+            PerformTestCases();
             Console.ReadLine();
         }
 
