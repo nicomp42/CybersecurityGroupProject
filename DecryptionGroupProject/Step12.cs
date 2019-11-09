@@ -18,11 +18,11 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">Bytes to encrypt</param>
         /// <returns>Encrypted bytes</returns>
-        public static Byte[] Encrypt(Byte[] text) {
+        public static Byte[] Encrypt(char[] text) {
             Byte[] encryptedText = new Byte[text.Length];
-            Byte[] bytes = new byte[text.Length + 1];
+            Byte[] bytes = new Byte[text.Length + 1];
             Byte[] tmp = Encoding.ASCII.GetBytes(text);
-            byte lastHighBit = 0x00, currentHighBit = 0x00; ;
+            byte lastHighBit = 0x00, currentHighBit = 0x00;
             // Copy the original text, as bytes, into the target byte array, offset 1
             for (int i = 0; i < tmp.Length; i++) {
                 bytes[i + 1] = tmp[i];
@@ -35,7 +35,7 @@ namespace CyberSecurityGroupProject
             }
             bytes[0] |= lastHighBit;
             for (int i = 0; i < bytes.Length; i++) {
-                encryptedText += (char)bytes[i]; 
+                encryptedText[i] = bytes[i]; 
             }
             //Console.WriteLine(encryptedText);
             return encryptedText;
@@ -47,11 +47,12 @@ namespace CyberSecurityGroupProject
         /// <returns>Decrypted bytes</returns>
         public static Byte[] Decrypt(Byte[]  text)
         {
-            Byte[] decryptedText = "";
+            string emptyString = "";
+            Byte[] decryptedText = Encoding.ASCII.GetBytes(emptyString);
             byte lastHighBit = 0x00, currentHighBit = 0x00; ;
             Byte[] bytes = new byte[text.Length];
             for (int i = 0; i < text.Length; i++) {
-                bytes[i] = (byte)((text.ToCharArray()[i])); // Inefficient!
+                bytes[i] = text[i]; // Inefficient!
             }
             Byte[] tmp = new byte[text.Length - 1];
             lastHighBit = bytes[0];
@@ -59,7 +60,7 @@ namespace CyberSecurityGroupProject
                 char c;
                 currentHighBit = (byte)(bytes[i] & (byte)0x01);
                 c = (char)((bytes[i] >> 1) | (lastHighBit << 7));
-                decryptedText = decryptedText + c;
+                decryptedText[i] = (byte)c;
                 lastHighBit = currentHighBit;
             }
             return decryptedText;
