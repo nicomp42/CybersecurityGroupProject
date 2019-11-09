@@ -11,10 +11,10 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Encrypt the String
         /// Swap every other character. 
-        /// If the number of chars in text is odd, do not change the last character</param>
+        /// If the number of bytes in text is odd, do not change the last character</param>
         /// For example "abcd" = "badc".
         /// </summary>
-        /// <param name="text">Bytes to be encrypted.  Characters in text must be from 1 to 127, inclusive. 
+        /// <param name="text">Bytes to be encrypted. 
         /// <returns>Encrypted Bytes</returns>
         public static Byte[] Encrypt(Byte[] text)
         {
@@ -23,7 +23,7 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
-        /// <param name="text">Bytes to be decrypted. Swap every other character to reverse the Encrypt method above</param>
+        /// <param name="text">Bytes to be decrypted. Swap every other byte to reverse the Encrypt method above</param>
         /// <returns>Decrypted Bytes</returns>
         public static Byte[] Decrypt(Byte[]  text)
         {

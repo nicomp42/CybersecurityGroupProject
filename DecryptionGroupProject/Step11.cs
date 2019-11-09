@@ -14,7 +14,7 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">String to encrypt</param>
         /// <returns>Encrypted string</returns>
-        public static byte[] Encrypt(String text)
+        public static byte[] Encrypt(byte[] text)
         {
             /*            SHA1 sha1 = new SHA1();
                         byte[] bytes = System.Text.Encoding.ASCII.GetBytes(text);

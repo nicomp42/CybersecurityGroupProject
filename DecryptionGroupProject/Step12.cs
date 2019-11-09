@@ -19,7 +19,7 @@ namespace CyberSecurityGroupProject
         /// <param name="text">Bytes to encrypt</param>
         /// <returns>Encrypted bytes</returns>
         public static Byte[] Encrypt(Byte[] text) {
-Byte[] encryptedText = new Byte[text.Length];
+            Byte[] encryptedText = new Byte[text.Length];
             Byte[] bytes = new byte[text.Length + 1];
             Byte[] tmp = Encoding.ASCII.GetBytes(text);
             byte lastHighBit = 0x00, currentHighBit = 0x00; ;

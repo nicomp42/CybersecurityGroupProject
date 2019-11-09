@@ -16,14 +16,7 @@ namespace CyberSecurityGroupProject
         /// <returns>Encrypted String</returns>
         public static Byte[] Encrypt(Byte[] text)
         {
-Byte[] encryptedText = new Byte[text.Length];
-            if (text.Length > 1)
-            {
-                String start = text.Substring(0, 1);
-                String end = text.Substring(text.Length - 1, 1);
-                encryptedText = end + text.Substring(1, text.Length - 2) + start;
-            }
-            return encryptedText;
+            return(SwapFirstAndLast(text));
         }
         /// <summary>
         /// Reverse the encryption applied in the Encrypt method in this class.
@@ -32,14 +25,19 @@ Byte[] encryptedText = new Byte[text.Length];
         /// <returns>Decrypted String</returns>
         public static Byte[] Decrypt(Byte[]  text)
         {
-            Byte[] decryptedText = "";
-            if (text.Length > 1)
-            {
-                String start = text.Substring(0, 1);
-                String end = text.Substring(text.Length - 1, 1);
-                decryptedText = end + text.Substring(1, text.Length - 2) + start;
-            }
-            return decryptedText;
+            return(SwapFirstAndLast(text));
         }
+        public static Byte[] SwapFirstAndLast(Byte[] text) {
+            Byte[] encryptedText= null;
+            if (text.Length > 1) {
+                Byte start = text[0];
+                Byte end = text[text.Length-1];
+                encryptedText = text.Clone();
+                encryptedText[0] = end;
+                encryptedText[encryptedText.Length-1] = start;
+            }
+            return encryptedText;
+        }
+
     }
 }

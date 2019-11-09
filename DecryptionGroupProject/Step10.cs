@@ -15,17 +15,18 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Map every character to a different character using a mapping array. 
         /// "Caesar Substitution" https://studio.code.org/s/hoc-encryption/stage/1/puzzle/1
-        /// For example text = "abcd", mapping array = 'n', 'p', 'k', 'z', 'q' then the encrypted string = "npkz"
+        /// For example (assuming a 5 letter alphabet!) text = "abcd", mapping array = 'n', 'p', 'k', 'z', 'q' then the encrypted string = "npkz"
         /// </summary>
-        /// <param name="text">The text to be mapped. Characters in text must be from 1 to 127, inclusive. </param>
-        /// <param name="mapping">The mapping array</param>
+        /// <param name="text">The text to be mapped.</param>
+        /// <param name="mapping">The mapping array. Must be 256 unique values!</param>
         /// <returns>The encoded string</returns>
-        public static String Encrypt(String text, int[] mapping)
+        public static String Encrypt(Byte[] text, Byte[] mapping)
         {
-Byte[] encryptedText = new Byte[text.Length];
-            foreach (Char c in text) {
-//              Console.Write(c); Console.Write(":"); Console.Write(System.Convert.ToInt32(c)); Console.Write(",");
-                encryptedText = encryptedText + System.Convert.ToChar(mapping[System.Convert.ToInt32(c)]);
+            Byte[] encryptedText = new Byte[text.Length];
+            int idx = 0;
+            foreach (Byte b in text) {
+                encryptedText[idx] = mapping[text[idx]];
+                idx++;
             }
             return encryptedText;
         }
@@ -33,20 +34,20 @@ Byte[] encryptedText = new Byte[text.Length];
         /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
         /// <param name="text">The text to be decrypted</param>
-        /// <param name="mapping">The mapping array</param>
+        /// <param name="mapping">The mapping array used to encrypt the text</param>
         /// <returns>The decrypted string</returns>
         public static String Decrypt(String text, int[] mapping)
         {
-            Byte[] decryptedText = "";
-            foreach (Char c in text) {
-                int val;
-                val = System.Convert.ToInt32(c);
-                int found;
-                found = -1;
-                for (int i = 0; i < mapping.Length; i++) {if (mapping[i] == val) { found = i; break; } }
-                decryptedText = decryptedText + System.Convert.ToChar(found);
+            Byte[] decryptedText = new Byte[text.Length];
+
+            int idx = 0;
+            foreach (Byte b in text) {
+                for (int i = 0; i < 256; i++) {
+                    if (text[idx] == mapping[i]) { decryptedText[idx] = i; break; }
+                }
+                idx++;
             }
-            return decryptedText;
+            return encryptedText;
         }
     }
 }
