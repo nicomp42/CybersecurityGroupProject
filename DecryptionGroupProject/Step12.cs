@@ -34,8 +34,8 @@ namespace CyberSecurityGroupProject
                 lastHighBit = currentHighBit;
             }
             bytes[0] |= lastHighBit;
-            for (int i = 0; i < bytes.Length; i++) {
-                encryptedText[i] = bytes[i]; 
+            for (int i = 1; i < bytes.Length; i++) {
+                encryptedText[i - 1] = bytes[i]; 
             }
             //Console.WriteLine(encryptedText);
             return encryptedText;
@@ -47,20 +47,19 @@ namespace CyberSecurityGroupProject
         /// <returns>Decrypted bytes</returns>
         public static Byte[] Decrypt(Byte[]  text)
         {
-            string emptyString = "";
-            Byte[] decryptedText = Encoding.ASCII.GetBytes(emptyString);
+            Byte[] decryptedText = new Byte[text.Length];
             byte lastHighBit = 0x00, currentHighBit = 0x00; ;
-            Byte[] bytes = new byte[text.Length];
+            Byte[] bytes = new Byte[text.Length + 1];
             for (int i = 0; i < text.Length; i++) {
-                bytes[i] = text[i]; // Inefficient!
+                bytes[i + 1] = text[i];
             }
-            Byte[] tmp = new byte[text.Length - 1];
+            Byte[] tmp = new Byte[text.Length + 1];
             lastHighBit = bytes[0];
             for (int i = 1; i < bytes.Length; i++) {
                 char c;
                 currentHighBit = (byte)(bytes[i] & (byte)0x01);
                 c = (char)((bytes[i] >> 1) | (lastHighBit << 7));
-                decryptedText[i] = (byte)c;
+                decryptedText[i - 1] = (byte)c;
                 lastHighBit = currentHighBit;
             }
             return decryptedText;
