@@ -57,6 +57,7 @@
     <Compile Include="Step10.cs" />
     <Compile Include="Step11.cs" />
     <Compile Include="Step12.cs" />
+    <Compile Include="Step13.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
