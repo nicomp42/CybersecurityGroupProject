@@ -17,6 +17,11 @@ namespace CyberSecurityGroupProject
             }
             return encryptedText;
         }
+        /// <summary>
+        /// Reverse the Encrypt method in this class
+        /// </summary>
+        /// <param name="text">The data to process</param>
+        /// <returns>The decrypted data</returns>
         public static Byte[] Decrypt(Byte[] text) {
             Byte[] decryptedText = new byte[text.Length];
             int idx = 0;
@@ -29,11 +34,14 @@ namespace CyberSecurityGroupProject
         private static Byte ReverseBits(Byte b)
         {
             byte reversedByte = 0;
-            Byte mask; mask = 0x80;
+            Byte mask; mask = 0x01;
+            Boolean bitSet = false;
             for (int i = 0; i < 8; i++) {
-                reversedByte |= (byte)((mask & b) !=0 ? 0x01 : 0x00);
+                bitSet = ((mask & b) != 0 ? true : false);
+                reversedByte |= (byte)(bitSet ? 0x01 : 0x00);
+                if (i == 7) { break; }
                 reversedByte = (byte)(reversedByte << 1);
-                mask = (byte)(mask >> 1);
+                mask = (byte)(mask << 1);
             }
             return reversedByte;
         }

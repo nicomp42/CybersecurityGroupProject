@@ -8,6 +8,7 @@ namespace CyberSecurityGroupProject
 {
     class Step08
     {
+        private static int modValue = 25;
         /// <summary>
         /// Encrypt the String
         /// Compute the checksum mod 25 of the text. 
@@ -25,18 +26,15 @@ namespace CyberSecurityGroupProject
             foreach (Byte b in text) {
                 checksum += b;
             }
-            checksum %= 25;    // Now checksum will be from 0 to 24, inclusive
+            checksum %= modValue;    // Now checksum will be from 0 to 24, inclusive
             String checksumString = Convert.ToString(checksum);
             if (checksum < 10) { checksumString = "0" + checksumString; }
             encryptedText = new byte[text.Length + 2 + checksum];
             encryptedText[0] = Convert.ToByte(checksumString.Substring(0, 1));
             encryptedText[1] = Convert.ToByte(checksumString.Substring(1, 1));
-            int idx = 2;
-            encryptedText = new byte[text.Length + 2 + checksum];
-            for (int i = 0; i < checksum; i++) {
-                int myRandom = r.Next(100) + 30;
-                encryptedText[idx] = Convert.ToByte(r.Next(100) + 30);
-                idx++;
+            for (int i = 0; i < text.Length; i++) { encryptedText[i + 2] = text[i]; }
+            for (int i = 2 + text.Length; i < checksum; i++) {
+                encryptedText[i] = Convert.ToByte(r.Next(100) + 30);
             }
             return encryptedText;
         }
@@ -47,11 +45,12 @@ namespace CyberSecurityGroupProject
         /// <returns>Decrypted String</returns>
         public static Byte[] Decrypt(Byte[]  text) {
             String tmp = Convert.ToString(text[0]) + Convert.ToString(text[1]);
-            int checkSum = Convert.ToInt32(tmp);
+            int checkSum = Convert.ToInt32(tmp) % modValue;
             Byte[] decryptedText = new Byte[text.Length - 2 - checkSum];
             int idx = 0;
             for (int i = 2; i < text.Length - 2 - checkSum; i++) {
                 decryptedText[idx] = text[i];
+                idx++;
             }
             return decryptedText;
         }

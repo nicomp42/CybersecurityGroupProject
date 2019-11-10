@@ -15,12 +15,12 @@ namespace CyberSecurityGroupProject
     {
         static void Main(string[] args)
         {
-            TestStep13();
+            //TestStep07();
             //TestStep12();
             //TestStep09();
             //TestStep10();
             //PerformStepByStepTest();
-            //PerformTestCases();
+            PerformTestCases();
             //string test = "abc";
             //Byte[] testBytes = Encoding.ASCII.GetBytes(test);
             //foreach (Byte b in testBytes)
@@ -88,7 +88,8 @@ namespace CyberSecurityGroupProject
 //            Console.WriteLine("Decrypting " + ToString(encryptedText));
 
             Byte[] decryptedText;
-            decryptedText = Step12.Decrypt(encryptedText);
+            decryptedText = Step13.Decrypt(encryptedText);
+            decryptedText = Step12.Decrypt(decryptedText);
             // Slip Step 11 because it's a one-way encryption
             decryptedText = Step10.Decrypt(decryptedText, mapping);
             decryptedText = Step09.Decrypt(decryptedText);
@@ -276,6 +277,14 @@ namespace CyberSecurityGroupProject
 
             result = Step02.Decrypt(result, 2);
             Console.WriteLine("Step 02 Decrypt: " + ToString(result));
+        }
+        private static void TestStep07() {
+            Byte[] result;
+            result = Step07.Encrypt(Encoding.ASCII.GetBytes("abcdef"));
+            Console.WriteLine("Step 07 Encrypt: >>>" + ToString(result) + "<<<");
+
+            result = Step07.Decrypt(result);
+            Console.WriteLine("Step 07 Decrypt: >>>" + ToString(result) + "<<<");
         }
         private static void TestStep09() {
             Byte[] result;
