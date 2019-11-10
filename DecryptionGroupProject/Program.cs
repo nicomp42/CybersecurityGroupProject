@@ -14,21 +14,18 @@ namespace CyberSecurityGroupProject
     class Program
     {
         static void Main(string[] args)
-        {
-            //TestStep07();
-            //TestStep12();
-            //TestStep09();
-            //TestStep10();
+        {/*
+            TestStep07();
+            TestStep08();
+            TestStep09();
+            TestStep10();
+            TestStep12();
+            TestStep13();
+            TestStep14();*/
             //PerformStepByStepTest();
-            PerformTestCases();
-            //string test = "abc";
-            //Byte[] testBytes = Encoding.ASCII.GetBytes(test);
-            //foreach (Byte b in testBytes)
-            //{
-            //    Console.WriteLine(b.ToString());
+            //for (int i = 0; i < 1000; i++) {
+                PerformTestCases();
             //}
-            //bool isEqual = Encoding.ASCII.GetBytes(test).ToString().Equals(testBytes.ToString());
-            //Console.WriteLine(isEqual);
             Console.ReadLine();
         }
 
@@ -81,16 +78,18 @@ namespace CyberSecurityGroupProject
             encryptedText = Step09.Encrypt(encryptedText);
             byte[] mapping = BuildRandomMapping2();
             encryptedText = Step10.Encrypt(encryptedText, mapping);
-            // Slip Step 11 because it's a one-way encryption
+            // Skip Step 11 because it's a one-way encryption
             encryptedText = Step12.Encrypt(encryptedText);
             encryptedText = Step13.Encrypt(encryptedText);
+            encryptedText = Step14.Encrypt(encryptedText);
 
-//            Console.WriteLine("Decrypting " + ToString(encryptedText));
+            //            Console.WriteLine("Decrypting " + ToString(encryptedText));
 
             Byte[] decryptedText;
-            decryptedText = Step13.Decrypt(encryptedText);
+            decryptedText = Step14.Decrypt(encryptedText);
+            decryptedText = Step13.Decrypt(decryptedText);
             decryptedText = Step12.Decrypt(decryptedText);
-            // Slip Step 11 because it's a one-way encryption
+            // Skip Step 11 because it's a one-way encryption
             decryptedText = Step10.Decrypt(decryptedText, mapping);
             decryptedText = Step09.Decrypt(decryptedText);
             decryptedText = Step08.Decrypt(decryptedText);
@@ -238,39 +237,11 @@ namespace CyberSecurityGroupProject
             Byte[] decryptedTextStep12 = Step12.Decrypt(encryptedTextStep12);
             Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep12));
         }
-        /// <summary>
-        /// This step will encrypt but not decrypt so let's not use it 
-        /// </summary>
-        private static void TestStep11() {
-            Byte[] test = Encoding.ASCII.GetBytes("Hello World");
-            Byte[] encryptyed = Step11.Encrypt(test);
-        }
-        /// <summary>
-        /// A stand-alone test for Step 12 'cause it's a little complicated relative to the others 
-        /// </summary>
-        private static void TestStep12()
-        {
-            Byte[] test = Encoding.ASCII.GetBytes("abcd");
-            Byte[] encrypted = Step12.Encrypt(test);
-            Byte[] decrypted = Step12.Decrypt(encrypted);
-            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
-//                  01234567890
-            test = Encoding.ASCII.GetBytes("          ");
-            encrypted = Step12.Encrypt(test);
-            decrypted = Step12.Decrypt(encrypted);
-            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
-//                  01234567890
-            test = Encoding.ASCII.GetBytes("!@#$%^&*()_+{}\":>?<");
-            encrypted = Step12.Encrypt(test);
-            decrypted = Step12.Decrypt(encrypted);
-            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
-        }
 
         /// <summary>
         /// A stand-alone test for Step 2
         /// </summary>
-        private static void TestStep2()
-        {
+        private static void TestStep2() {
             Byte[] result;
             result = Step02.Encrypt(Encoding.ASCII.GetBytes("abc"), 'q', 2);
             Console.WriteLine("Step 02 Encrypt: " + ToString(result));
@@ -286,6 +257,14 @@ namespace CyberSecurityGroupProject
             result = Step07.Decrypt(result);
             Console.WriteLine("Step 07 Decrypt: >>>" + ToString(result) + "<<<");
         }
+        private static void TestStep08() {
+            Byte[] result;
+            result = Step08.Encrypt(Encoding.ASCII.GetBytes("abcdef"));
+            Console.WriteLine("Step 08 Encrypt: >>>" + ToString(result) + "<<<");
+
+            result = Step08.Decrypt(result);
+            Console.WriteLine("Step 08 Decrypt: >>>" + ToString(result) + "<<<");
+        }
         private static void TestStep09() {
             Byte[] result;
             result = Step09.Encrypt(Encoding.ASCII.GetBytes("abcdef"));
@@ -297,15 +276,39 @@ namespace CyberSecurityGroupProject
         private static void TestStep10() {
             Byte[] result;
             Byte[] randomMapping = BuildRandomMapping3();
-            result = Step10.Encrypt(Encoding.ASCII.GetBytes("abc"), randomMapping);
+            result = Step10.Encrypt(Encoding.ASCII.GetBytes("abcdef"), randomMapping);
             Console.WriteLine("Step 10 Encrypt: >>>" + ToString(result) + "<<<");
      
             result = Step10.Decrypt(result, randomMapping);
             Console.WriteLine("Step 10 Decrypt: >>>" + ToString(result) + "<<<");
         }
-        private static String ToString(Byte[] text) {
-            String myString = Encoding.UTF8.GetString(text, 0, text.Length);
-            return myString;
+        /// <summary>
+        /// This step will encrypt but not decrypt so let's not use it 
+        /// </summary>
+        private static void TestStep11()
+        {
+            Byte[] test = Encoding.ASCII.GetBytes("Hello World");
+            Byte[] encryptyed = Step11.Encrypt(test);
+        }
+        /// <summary>
+        /// A stand-alone test for Step 12 'cause it's a little complicated relative to the others 
+        /// </summary>
+        private static void TestStep12()
+        {
+            Byte[] test = Encoding.ASCII.GetBytes("abcd");
+            Byte[] encrypted = Step12.Encrypt(test);
+            Byte[] decrypted = Step12.Decrypt(encrypted);
+            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
+            //                  01234567890
+            test = Encoding.ASCII.GetBytes("          ");
+            encrypted = Step12.Encrypt(test);
+            decrypted = Step12.Decrypt(encrypted);
+            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
+            //                  01234567890
+            test = Encoding.ASCII.GetBytes("!@#$%^&*()_+{}\":>?<");
+            encrypted = Step12.Encrypt(test);
+            decrypted = Step12.Decrypt(encrypted);
+            Console.WriteLine("Step 12 test: " + ToString(test) + " encrypted to " + ToString(encrypted) + " and decrypted to >>>" + ToString(decrypted) + "<<<");
         }
         private static void TestStep13() {
             Byte[] result;
@@ -314,6 +317,18 @@ namespace CyberSecurityGroupProject
 
             result = Step13.Decrypt(result);
             Console.WriteLine("Step 13 Decrypt: >>>" + ToString(result) + "<<<");
+        }
+        private static void TestStep14() {
+            Byte[] result;
+            result = Step14.Encrypt(Encoding.ASCII.GetBytes("abcdef"));
+            Console.WriteLine("Step 14 Encrypt: >>>" + ToString(result) + "<<<");
+
+            result = Step14.Decrypt(result);
+            Console.WriteLine("Step 14 Decrypt: >>>" + ToString(result) + "<<<");
+        }
+        private static String ToString(Byte[] text) {
+            String myString = Encoding.UTF8.GetString(text, 0, text.Length);
+            return myString;
         }
     }
 }

@@ -13,8 +13,8 @@ namespace CyberSecurityGroupProject
         /// XOR the low bit of each char in text with 1. This flips the state of the bit: 1 becomes 0, 0 becomes 1
         /// For example: "abcde" becomes  "`cbed"
         /// </summary>
-        /// <param name="text">String to be encrypted.</param>
-        /// <returns>Encrypted String</returns>
+        /// <param name="text">Data to be encrypted.</param>
+        /// <returns>Encrypted Data</returns>
         public static Byte[] Encrypt(Byte[] text)
         {
             return XORMe(text);
@@ -22,8 +22,8 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
-        /// <param name="text">String to be decrypted</param>
-        /// <returns>Decrypted String</returns>
+        /// <param name="text">Data to be decrypted</param>
+        /// <returns>Decrypted Data</returns>
         public static Byte[] Decrypt(Byte[]  text)
         {
             return XORMe(text);
