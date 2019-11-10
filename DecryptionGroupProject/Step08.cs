@@ -10,14 +10,14 @@ namespace CyberSecurityGroupProject
     {
         private static int modValue = 25;
         /// <summary>
-        /// Encrypt the String
+        /// Encrypt the data
         /// Compute the checksum mod 25 of the text. 
         /// Append that number as ASCII text, 2 chars wide, zero padded from the left, at the beginning of the text.
         /// Then, append that number of random characters to the end of the text.
         /// For example: "abcd" encrypts to  "19abcdRjRs'mzy?_MmZx93-a"
         /// </summary>
-        /// <param name="text">String to be encrypted. Characters in text must be from 1 to 127, inclusive.  </param>
-        /// <returns>Encrypted String</returns>
+        /// <param name="text">data to be encrypted. Characters in text must be from 1 to 127, inclusive.  </param>
+        /// <returns>Encrypted data</returns>
         public static Byte[] Encrypt(Byte[] text)
         {
             Byte[] encryptedText = null;
@@ -41,8 +41,8 @@ namespace CyberSecurityGroupProject
         /// <summary>
         /// Reverse the encryption applied in the Encrypt method in this class.
         /// </summary>
-        /// <param name="text">String to be decrypted.</param>
-        /// <returns>Decrypted String</returns>
+        /// <param name="text">data to be decrypted.</param>
+        /// <returns>Decrypted data</returns>
         public static Byte[] Decrypt(Byte[]  text) {
             String tmp = Convert.ToString(text[0]) + Convert.ToString(text[1]);
             int checkSum = Convert.ToInt32(tmp) % modValue;
