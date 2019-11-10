@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CyberSecurityGroupProject
@@ -19,6 +20,14 @@ namespace CyberSecurityGroupProject
             TestStep10();
             PerformStepByStepTest();
             PerformTestCases();
+            //string test = "abc";
+            //Byte[] testBytes = Encoding.ASCII.GetBytes(test);
+            //foreach (Byte b in testBytes)
+            //{
+            //    Console.WriteLine(b.ToString());
+            //}
+            //bool isEqual = Encoding.ASCII.GetBytes(test).ToString().Equals(testBytes.ToString());
+            //Console.WriteLine(isEqual);
             Console.ReadLine();
         }
 
@@ -91,7 +100,7 @@ namespace CyberSecurityGroupProject
             decryptedText = Step01.Decrypt(decryptedText);
 
             Console.WriteLine("Result = " + decryptedText);
-            if (text.Equals(decryptedText)) {
+            if (Encoding.ASCII.GetBytes(text).ToString().Equals(decryptedText.ToString())) {
                 Console.WriteLine(testTitle + " Passed");
                 return true;
             } else {
