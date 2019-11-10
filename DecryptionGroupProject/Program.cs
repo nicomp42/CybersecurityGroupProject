@@ -83,7 +83,7 @@ namespace CyberSecurityGroupProject
             // Slip Step 11 because it's a one-way encryption
             encryptedText = Step12.Encrypt(encryptedText);
 
-            Console.WriteLine("Decrypting " + encryptedText);
+//            Console.WriteLine("Decrypting " + ToString(encryptedText));
 
             Byte[] decryptedText;
             decryptedText = Step12.Decrypt(encryptedText);
@@ -99,7 +99,7 @@ namespace CyberSecurityGroupProject
             decryptedText = Step02.Decrypt(decryptedText, 2);
             decryptedText = Step01.Decrypt(decryptedText);
 
-            Console.WriteLine("Result = " + decryptedText);
+//            Console.WriteLine("Result = " + ToString(decryptedText));
             if (Encoding.ASCII.GetBytes(text).ToString().Equals(decryptedText.ToString())) {
                 Console.WriteLine(testTitle + " Passed");
                 return true;
@@ -293,7 +293,8 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Step 10 Decrypt: >>>" + ToString(result) + "<<<");
         }
         private static String ToString(Byte[] text) {
-            return Encoding.Default.GetString(text);
+            String myString = Encoding.UTF8.GetString(text, 0, text.Length);
+            return myString;
         }
     }
 }
