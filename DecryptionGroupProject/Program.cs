@@ -21,11 +21,10 @@ namespace CyberSecurityGroupProject
             TestStep10();
             TestStep12();
             TestStep13();
-            TestStep14();*/
+            TestStep14();
+            TestStep15();*/
             //PerformStepByStepTest();
-            //for (int i = 0; i < 1000; i++) {
-                PerformTestCases();
-            //}
+            PerformTestCases();
             Console.ReadLine();
         }
 
@@ -67,7 +66,7 @@ namespace CyberSecurityGroupProject
             String text = testString;
             Console.WriteLine(testTitle + ": Starting with " + text);
             Byte[] encryptedText;
-            encryptedText = Step01.Encrypt(Encoding.ASCII.GetBytes(text));
+            encryptedText = (new Step01()).Encrypt(Encoding.ASCII.GetBytes(text));
             encryptedText = Step02.Encrypt(encryptedText, 'q', 2);
             encryptedText = Step03.Encrypt(encryptedText);
             encryptedText = Step04.Encrypt(encryptedText);
@@ -82,11 +81,13 @@ namespace CyberSecurityGroupProject
             encryptedText = Step12.Encrypt(encryptedText);
             encryptedText = Step13.Encrypt(encryptedText);
             encryptedText = Step14.Encrypt(encryptedText);
+            encryptedText = (new Step15()).Encrypt(encryptedText);
 
             //            Console.WriteLine("Decrypting " + ToString(encryptedText));
 
             Byte[] decryptedText;
-            decryptedText = Step14.Decrypt(encryptedText);
+            decryptedText = (new Step15()).Decrypt(encryptedText);
+            decryptedText = Step14.Decrypt(decryptedText);
             decryptedText = Step13.Decrypt(decryptedText);
             decryptedText = Step12.Decrypt(decryptedText);
             // Skip Step 11 because it's a one-way encryption
@@ -99,7 +100,7 @@ namespace CyberSecurityGroupProject
             decryptedText = Step04.Decrypt(decryptedText);
             decryptedText = Step03.Decrypt(decryptedText);
             decryptedText = Step02.Decrypt(decryptedText, 2);
-            decryptedText = Step01.Decrypt(decryptedText);
+            decryptedText = (new Step01()).Decrypt(decryptedText);
 
 //            Console.WriteLine("Result = " + ToString(decryptedText));
             if (Encoding.ASCII.GetBytes(text).ToString().Equals(decryptedText.ToString())) {
@@ -180,9 +181,9 @@ namespace CyberSecurityGroupProject
             Console.WriteLine("Starting with "+ clearText);
             Console.WriteLine("Encrypting...");
             // Step 01
-            Byte[] encryptedTextStep01 = Step01.Encrypt(Encoding.ASCII.GetBytes(clearText));
+            Byte[] encryptedTextStep01 = (new Step01()).Encrypt(Encoding.ASCII.GetBytes(clearText));
             Console.WriteLine("Step 01: " + ToString(encryptedTextStep01));
-            Byte[] decryptedTextStep01 = Step01.Decrypt(encryptedTextStep01);
+            Byte[] decryptedTextStep01 = (new Step01()).Decrypt(encryptedTextStep01);
             Console.WriteLine("         Decrypts to " + ToString(decryptedTextStep01));
             // Step 02
             Byte[] encryptedTextStep02 = Step02.Encrypt(encryptedTextStep01, 'q', 2);
@@ -325,6 +326,14 @@ namespace CyberSecurityGroupProject
 
             result = Step14.Decrypt(result);
             Console.WriteLine("Step 14 Decrypt: >>>" + ToString(result) + "<<<");
+        }
+        private static void TestStep15() {
+            Byte[] result;
+            result = (new Step15()).Encrypt(Encoding.ASCII.GetBytes("abcdef"));
+            Console.WriteLine("Step 15 Encrypt: >>>" + ToString(result) + "<<<");
+
+            result = (new Step15()).Decrypt(result);
+            Console.WriteLine("Step 15 Decrypt: >>>" + ToString(result) + "<<<");
         }
         private static String ToString(Byte[] text) {
             String myString = Encoding.UTF8.GetString(text, 0, text.Length);

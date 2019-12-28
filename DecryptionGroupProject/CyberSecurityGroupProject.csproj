@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Step.cs" />
     <Compile Include="Step01.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Step12.cs" />
     <Compile Include="Step13.cs" />
     <Compile Include="Step14.cs" />
+    <Compile Include="Step15.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

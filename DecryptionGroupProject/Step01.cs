@@ -6,7 +6,7 @@ using System;
 
 namespace CyberSecurityGroupProject
 {
-    class Step01
+    class Step01 : Step
     {
         /// <summary>
         /// Add one unit to each character in the string
@@ -15,7 +15,7 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">The string to process</param>
         /// <returns>The encrypted string</returns>
-        public static byte[] Encrypt(byte[] text)
+        public override byte[] Encrypt(byte[] text)
         {
             byte[] encryptedText = new byte[text.Length];
             int i = 0;
@@ -32,7 +32,7 @@ namespace CyberSecurityGroupProject
         /// </summary>
         /// <param name="text">The string to process</param>
         /// <returns>The encrypted string</returns>
-        public static byte[] Decrypt(byte[] text)
+        public override byte[] Decrypt(byte[] text)
         {
             byte[] decryptedText = new byte[text.Length];
             int i = 0;
