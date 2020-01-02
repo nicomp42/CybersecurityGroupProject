@@ -8,7 +8,8 @@ namespace CyberSecurityGroupProject {
     class Step15 : Step {
 
         /// <summary>
-        /// Convert each byte to a set of 8 bytes, one bit per byte
+        /// Convert each byte to a set of 8 bytes, one bit per byte based on the ASCII chart 
+        /// For example, {'a','b','c'} converts to {'0','1','0','0','0','0','0','1','0','1','0','0','0','0','1','0','0','1','0','0','0','0','1','1'}
         /// </summary>
         /// <param name="bytes">The message to be encrypted</param>
         /// <returns>The encrypted message</returns>
@@ -25,7 +26,11 @@ namespace CyberSecurityGroupProject {
             }
             return encrypt;
         }
-
+        /// <summary>
+        /// Decrypt the bytes after they were encrypted in the Encrypt method in this class
+        /// </summary>
+        /// <param name="bytes">Bytes to be decrypted. All bytes will be '1' or '0'</param>
+        /// <returns>The decrypted bytes.</returns>
         public override byte[] Decrypt(byte[] bytes) {
             Byte[] decrypt = new byte[bytes.Length / 8];        // Each set of 8 bytes will collapse into one byte of the decrypted message
             for (int i = 0; i < bytes.Length/8; i++) {
